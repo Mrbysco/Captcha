@@ -8,7 +8,7 @@ modId="captcha"
 version="${file.jarVersion}"
 displayName="Captcha"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/captcha"
-authors="Mrbysco,"
+authors="Mrbysco, JackRuby1"
 description='''
 Ever thought it'd be a great idea to require a Captcha to open an inventory? Well, this is the mod you are looking for!
 '''
