@@ -1,0 +1,10 @@
+{
+  "captcha.notarobot.screen": "Please check the box below to proceed.",
+  "captcha.notarobot.failed": "Your response was incorrect. Please try again.",
+  "captcha.notarobot.checkbox": "I'm not a monster",
+
+  "captcha.math.screen": "Just to prove you are a player,",
+  "captcha.math.screen2": "please answer the following math challenge.",
+  "captcha.math.question": "%s + %s = ?",
+  "captcha.math.note": "Note: When filled in incorrectly it will regenerate."
+}

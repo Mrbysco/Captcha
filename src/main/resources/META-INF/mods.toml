@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[38,)"
+issueTrackerURL="https://github.com/Mrbysco/Captcha/issues"
+license="MIT"
+
+[[mods]]
+modId="captcha"
+version="${file.jarVersion}"
+displayName="Captcha"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/captcha"
+authors="Mrbysco,"
+description='''
+Ever thought it'd be a great idea to require a Captcha to open an inventory? Well, this is the mod you are looking for!
+'''
+[[dependencies.captcha]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.18,1.19)"
+ordering="NONE"
+side="BOTH"
