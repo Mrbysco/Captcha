@@ -14,12 +14,12 @@ public class CaptchaConfig {
 					.push("General");
 
 			captchaTime = builder
-					.comment("Defines the amount of time in seconds in which the captcha should be solved")
+					.comment("Defines the amount of time in seconds in which the captcha should be solved [Default: 15]")
 					.defineInRange("captchaTime", 15, 1, Integer.MAX_VALUE);
 
 			captchaCooldown = builder
-					.comment("Defines the cooldown between captcha requests in seconds")
-					.defineInRange("captchaCooldown", 1800, 30, Integer.MAX_VALUE);
+					.comment("Defines the cooldown between captcha requests in seconds [Default: 900 (15 minutes)]")
+					.defineInRange("captchaCooldown", 900, 30, Integer.MAX_VALUE);
 
 			builder.pop();
 		}
