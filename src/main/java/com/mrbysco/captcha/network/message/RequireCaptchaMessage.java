@@ -12,7 +12,7 @@ public class RequireCaptchaMessage {
 	private final String code;
 	private final int maxCompletionTime;
 
-	public RequireCaptchaMessage(String code, int maxCompletionTime){
+	public RequireCaptchaMessage(String code, int maxCompletionTime) {
 		this.code = code;
 		this.maxCompletionTime = maxCompletionTime;
 	}

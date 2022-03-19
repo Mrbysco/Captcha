@@ -18,7 +18,7 @@ public class NetworkHandler {
 
 	private static int id = 0;
 
-	public static void init(){
+	public static void init() {
 		CHANNEL.registerMessage(id++, RequireCaptchaMessage.class, RequireCaptchaMessage::encode, RequireCaptchaMessage::decode, RequireCaptchaMessage::handle);
 		CHANNEL.registerMessage(id++, CompletedCaptchaMessage.class, CompletedCaptchaMessage::encode, CompletedCaptchaMessage::decode, CompletedCaptchaMessage::handle);
 	}

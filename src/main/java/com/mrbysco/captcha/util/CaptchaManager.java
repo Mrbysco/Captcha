@@ -12,7 +12,7 @@ public class CaptchaManager {
 	private static final Map<UUID, String> activeMap = new HashMap<>();
 
 	public static boolean completedCaptchaRecently(UUID uuid) {
-		if(captchaMap.containsKey(uuid)) {
+		if (captchaMap.containsKey(uuid)) {
 			long lastCompleted = captchaMap.get(uuid);
 			long currentTime = System.currentTimeMillis();
 
@@ -37,8 +37,8 @@ public class CaptchaManager {
 	}
 
 	public static void setCompletedRecently(UUID uuid, String code) {
-		if(activeMap.containsKey(uuid)) {
-			if(activeMap.get(uuid).equals(code)) {
+		if (activeMap.containsKey(uuid)) {
+			if (activeMap.get(uuid).equals(code)) {
 				activeMap.remove(uuid);
 				captchaMap.put(uuid, System.currentTimeMillis());
 			}

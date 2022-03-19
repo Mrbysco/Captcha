@@ -15,19 +15,19 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(Captcha.MOD_ID)
 public class Captcha {
-    public static final String MOD_ID = "captcha";
-    public static final Logger LOGGER = LogManager.getLogger();
+	public static final String MOD_ID = "captcha";
+	public static final Logger LOGGER = LogManager.getLogger();
 
-    public Captcha() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CaptchaConfig.commonSpec);
+	public Captcha() {
+		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CaptchaConfig.commonSpec);
 
-        eventBus.addListener(this::setup);
+		eventBus.addListener(this::setup);
 
-        MinecraftForge.EVENT_BUS.addListener(CaptchaHandler::onPlayerTick);
-    }
+		MinecraftForge.EVENT_BUS.addListener(CaptchaHandler::onPlayerTick);
+	}
 
-    private void setup(final FMLCommonSetupEvent event) {
-        NetworkHandler.init();
-    }
+	private void setup(final FMLCommonSetupEvent event) {
+		NetworkHandler.init();
+	}
 }

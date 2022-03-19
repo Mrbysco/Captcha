@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 public class CompletedCaptchaMessage {
 	private String code;
 
-	public CompletedCaptchaMessage(String code){
+	public CompletedCaptchaMessage(String code) {
 		this.code = code;
 	}
 

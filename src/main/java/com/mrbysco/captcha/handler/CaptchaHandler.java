@@ -16,16 +16,16 @@ import java.util.UUID;
 public class CaptchaHandler {
 	public static void onPlayerTick(PlayerTickEvent event) {
 		Player player = event.player;
-		if(event.phase == Phase.END && event.side.isServer() && player != null) {
+		if (event.phase == Phase.END && event.side.isServer() && player != null) {
 			Level level = player.level;
-			if(!player.isSpectator() && level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
+			if (!player.isSpectator() && level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
 				UUID uuid = player.getUUID();
-				if(!CaptchaManager.completedCaptchaRecently(uuid)) {
+				if (!CaptchaManager.completedCaptchaRecently(uuid)) {
 					String code = CaptchaManager.getActiveCode(uuid);
-					if(code == null) {
+					if (code == null) {
 						code = CaptchaManager.applyRandomCode(uuid);
 					}
-					if(code != null && !code.isEmpty()) {
+					if (code != null && !code.isEmpty()) {
 						NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
 								new RequireCaptchaMessage(code, CaptchaConfig.COMMON.captchaTime.get()));
 					}

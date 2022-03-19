@@ -29,8 +29,8 @@ public class NotARobotScreen extends CaptchaScreen {
 	@Override
 	public void tick() {
 		super.tick();
-		if(notARobot.selected()) {
-			if(this.timeWaited < getMaxCompletionTime()) {
+		if (notARobot.selected()) {
+			if (this.timeWaited < getMaxCompletionTime()) {
 				//Complete
 				this.completeCaptcha();
 			} else {

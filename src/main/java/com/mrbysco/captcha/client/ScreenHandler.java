@@ -12,7 +12,7 @@ public class ScreenHandler {
 
 	public static void openCaptcha(String code, int maxCompletionTime) {
 		Minecraft mc = Minecraft.getInstance();
-		if(!(mc.screen instanceof CaptchaScreen)) {
+		if (!(mc.screen instanceof CaptchaScreen)) {
 			switch (random.nextInt(3)) {
 				default -> mc.setScreen(new NotARobotScreen(code, maxCompletionTime));
 				case 1 -> mc.setScreen(new MathScreen(code, maxCompletionTime));

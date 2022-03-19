@@ -6,6 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
@@ -22,11 +23,11 @@ public class MathScreen extends CaptchaScreen {
 	}
 
 	private void changeQuestion() {
-		this.valueX = (int)(Math.random() * 100);
-		this.valueY = (int)(Math.random() * 100);
+		this.valueX = (int) (Math.random() * 100);
+		this.valueY = (int) (Math.random() * 100);
 		this.answer = valueX + valueY;
 
-		if(this.answer == 0){
+		if (this.answer == 0) {
 			this.valueX = 9;
 			this.valueY = 10;
 			this.answer = 19;
@@ -55,13 +56,13 @@ public class MathScreen extends CaptchaScreen {
 	public void tick() {
 		super.tick();
 
-		if(this.timeWaited > getMaxCompletionTime()) {
+		if (this.timeWaited > getMaxCompletionTime()) {
 			resetCaptcha();
 		}
 	}
 
 	public void checkAnswer() {
-		if(answerBox.getInt() == this.answer) {
+		if (answerBox.getInt() == this.answer) {
 			//Complete
 			this.completeCaptcha();
 		} else {
@@ -79,14 +80,13 @@ public class MathScreen extends CaptchaScreen {
 				new TranslatableComponent("captcha.math.screen2"),
 				TextComponent.EMPTY,
 				new TranslatableComponent("captcha.math.question", valueX, valueY).withStyle(ChatFormatting.YELLOW)));
-		int i = (this.message.getLineCount() + 1) * 9;
 	}
 
 	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		if (super.keyPressed(keyCode, scanCode, modifiers)) {
 			return true;
-		} else if (keyCode == 257) {
+		} else if (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER) {
 			this.checkAnswer();
 			return true;
 		} else {
