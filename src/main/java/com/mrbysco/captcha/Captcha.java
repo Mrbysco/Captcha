@@ -1,5 +1,6 @@
 package com.mrbysco.captcha;
 
+import com.mojang.logging.LogUtils;
 import com.mrbysco.captcha.config.CaptchaConfig;
 import com.mrbysco.captcha.handler.CaptchaHandler;
 import com.mrbysco.captcha.network.NetworkHandler;
@@ -10,13 +11,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
 @Mod(Captcha.MOD_ID)
 public class Captcha {
 	public static final String MOD_ID = "captcha";
-	public static final Logger LOGGER = LogManager.getLogger();
+	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public Captcha() {
 		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
