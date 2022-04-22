@@ -1,7 +1,6 @@
 package com.mrbysco.captcha.client.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mrbysco.captcha.Captcha;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.MultiLineLabel;
@@ -28,28 +27,23 @@ public class MathScreen extends CaptchaScreen {
 
 	private void changeQuestion() {
 		this.operation = MathOperation.getRandomOperation(random);
-		double valueX = (Math.random() * 100);
-		double valueY = (Math.random() * 100);
+		double valueX = this.operation.generateX();
+		double valueY = this.operation.generateY();
 		double answer = this.operation.getAnswer(valueX, valueY);
 
 		if (this.operation == MathOperation.DIVISION) {
 			int tries = 0;
 			while ((valueX < valueY || valueX % valueY != 0) && tries < 20) {
-				valueX = 1 + (int) (Math.random() * 100);
-				valueY = 1 + (int) (Math.random() * 100);
+				valueX = 1 + (int) this.operation.generateX();
+				valueY = 1 + (int) this.operation.generateY();
 			}
 			answer = valueX / valueY;
-		}
-		if(this.operation == MathOperation.MULTIPLICATION) {
-			valueX = (Math.random() * 50);
-			valueY = (Math.random() * 50);
-			answer = this.operation.getAnswer(valueX, valueY);
 		}
 
 		int tries = 0;
 		while (answer == 0 && tries < 5) {
-			valueX = (Math.random() * 100);
-			valueY = (Math.random() * 100);
+			valueX = this.operation.generateX();
+			valueY = this.operation.generateY();
 			answer = this.operation.getAnswer(valueX, valueY);
 			tries++;
 		}
