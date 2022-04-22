@@ -5,6 +5,6 @@
 
   "captcha.math.screen": "Just to prove you are a player,",
   "captcha.math.screen2": "please answer the following math challenge.",
-  "captcha.math.question": "%s + %s = ?",
+  "captcha.math.question": "%s %s %s = ?",
   "captcha.math.note": "Note: When filled in incorrectly it will regenerate."
 }

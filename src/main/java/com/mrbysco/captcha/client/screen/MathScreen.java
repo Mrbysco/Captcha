@@ -1,6 +1,7 @@
 package com.mrbysco.captcha.client.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mrbysco.captcha.Captcha;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.MultiLineLabel;
@@ -9,9 +10,12 @@ import net.minecraft.network.chat.TranslatableComponent;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
+import java.util.Random;
 
 public class MathScreen extends CaptchaScreen {
+	private static final Random random = new Random();
 	private NumberEditBox answerBox;
+	private MathOperation operation;
 	private int valueX;
 	private int valueY;
 	private int answer;
@@ -23,11 +27,34 @@ public class MathScreen extends CaptchaScreen {
 	}
 
 	private void changeQuestion() {
-		this.valueX = (int) (Math.random() * 100);
-		this.valueY = (int) (Math.random() * 100);
-		this.answer = valueX + valueY;
+		this.operation = MathOperation.getRandomOperation(random);
+		double valueX = (Math.random() * 100);
+		double valueY = (Math.random() * 100);
+		double answer = this.operation.getAnswer(valueX, valueY);
+
+		if (this.operation == MathOperation.DIVISION) {
+			int tries = 0;
+			while ((valueX < valueY || valueX % valueY != 0) && tries < 20) {
+				valueX = 1 + (int) (Math.random() * 100);
+				valueY = 1 + (int) (Math.random() * 100);
+			}
+			answer = valueX / valueY;
+		}
+
+		int tries = 0;
+		while (answer == 0 && tries < 5) {
+			valueX = (Math.random() * 100);
+			valueY = (Math.random() * 100);
+			answer = this.operation.getAnswer(valueX, valueY);
+			tries++;
+		}
+
+		this.valueX = (int) valueX;
+		this.valueY = (int) valueY;
+		this.answer = (int) answer;
 
 		if (this.answer == 0) {
+			this.operation = MathOperation.ADDITION;
 			this.valueX = 9;
 			this.valueY = 10;
 			this.answer = 19;
@@ -41,7 +68,7 @@ public class MathScreen extends CaptchaScreen {
 		this.message = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.math.screen"),
 				new TranslatableComponent("captcha.math.screen2"),
 				TextComponent.EMPTY,
-				new TranslatableComponent("captcha.math.question", valueX, valueY).withStyle(ChatFormatting.YELLOW)));
+				new TranslatableComponent("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
 		int i = (this.message.getLineCount() + 1) * 9;
 
 		this.answerBox = new NumberEditBox(this.font, 76 + i, 140, 60, 20, TextComponent.EMPTY);
@@ -79,7 +106,7 @@ public class MathScreen extends CaptchaScreen {
 		this.message = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.math.screen"),
 				new TranslatableComponent("captcha.math.screen2"),
 				TextComponent.EMPTY,
-				new TranslatableComponent("captcha.math.question", valueX, valueY).withStyle(ChatFormatting.YELLOW)));
+				new TranslatableComponent("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
 	}
 
 	@Override
