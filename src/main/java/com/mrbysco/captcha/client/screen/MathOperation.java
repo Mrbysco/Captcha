@@ -1,18 +1,21 @@
 package com.mrbysco.captcha.client.screen;
 
+import com.mrbysco.captcha.config.CaptchaConfig;
+
 import java.util.Random;
+import java.util.function.Supplier;
 
 public enum MathOperation {
-	ADDITION("+", 100, 100),
-	SUBTRACTION("-", 100, 100),
-	MULTIPLICATION("*", 20, 20),
-	DIVISION("/", 100, 100);
+	ADDITION("+", CaptchaConfig.COMMON.additionMaxX::get, CaptchaConfig.COMMON.additionMaxY::get),
+	SUBTRACTION("-", CaptchaConfig.COMMON.subtractionMaxX::get, CaptchaConfig.COMMON.additionMaxY::get),
+	MULTIPLICATION("*", CaptchaConfig.COMMON.multiplicationMaxX::get, CaptchaConfig.COMMON.multiplicationMaxY::get),
+	DIVISION("/", CaptchaConfig.COMMON.divisionMaxX::get, CaptchaConfig.COMMON.divisionMaxY::get);
 
 	private final String symbol;
-	private final int maxX;
-	private final int maxY;
+	private final Supplier<Integer> maxX;
+	private final Supplier<Integer> maxY;
 
-	MathOperation(String symbol, int maxX, int maxY) {
+	MathOperation(String symbol, Supplier<Integer> maxX, Supplier<Integer> maxY) {
 		this.symbol = symbol;
 		this.maxX = maxX;
 		this.maxY = maxY;
@@ -23,11 +26,11 @@ public enum MathOperation {
 	}
 
 	public double generateX() {
-		return Math.random() * maxX;
+		return Math.random() * maxX.get();
 	}
 
 	public double generateY() {
-		return Math.random() * maxY;
+		return Math.random() * maxY.get();
 	}
 
 	public double getAnswer(double x, double y) {
