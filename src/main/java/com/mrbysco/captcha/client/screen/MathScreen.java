@@ -40,6 +40,11 @@ public class MathScreen extends CaptchaScreen {
 			}
 			answer = valueX / valueY;
 		}
+		if(this.operation == MathOperation.MULTIPLICATION) {
+			valueX = (Math.random() * 50);
+			valueY = (Math.random() * 50);
+			answer = this.operation.getAnswer(valueX, valueY);
+		}
 
 		int tries = 0;
 		while (answer == 0 && tries < 5) {
