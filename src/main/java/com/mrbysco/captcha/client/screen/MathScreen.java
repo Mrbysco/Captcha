@@ -71,7 +71,7 @@ public class MathScreen extends CaptchaScreen {
 		int i = (this.message.getLineCount() + 1) * 9;
 
 		this.answerBox = new NumberEditBox(this.font, 76 + i, 140, 60, 20, TextComponent.EMPTY);
-		this.answerBox.setMaxLength(6);
+		this.answerBox.setMaxLength(8);
 		this.answerBox.setX(this.width / 2 - this.answerBox.getWidth() / 2);
 		this.addWidget(this.answerBox);
 

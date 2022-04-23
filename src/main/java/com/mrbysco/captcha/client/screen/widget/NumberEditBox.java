@@ -40,6 +40,6 @@ public class NumberEditBox extends EditBox {
 	}
 
 	private boolean isNumeric(String value) {
-		return NumberUtils.isParsable(value);
+		return value.equals("-") || NumberUtils.isParsable(value);
 	}
 }
