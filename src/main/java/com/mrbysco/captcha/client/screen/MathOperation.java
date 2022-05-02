@@ -26,11 +26,11 @@ public enum MathOperation {
 	}
 
 	public double generateX() {
-		return Math.random() * maxX.get();
+		return (int)(Math.random() * maxX.get());
 	}
 
 	public double generateY() {
-		return Math.random() * maxY.get();
+		return (int)(Math.random() * maxY.get());
 	}
 
 	public double getAnswer(double x, double y) {

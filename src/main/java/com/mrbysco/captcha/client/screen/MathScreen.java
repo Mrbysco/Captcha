@@ -34,8 +34,8 @@ public class MathScreen extends CaptchaScreen {
 		if (this.operation == MathOperation.DIVISION) {
 			int tries = 0;
 			while ((valueX < valueY || valueX % valueY != 0) && tries < 20) {
-				valueX = 1 + (int) this.operation.generateX();
-				valueY = 1 + (int) this.operation.generateY();
+				valueX = 1 + this.operation.generateX();
+				valueY = 1 + this.operation.generateY();
 			}
 			answer = valueX / valueY;
 		}
@@ -52,7 +52,7 @@ public class MathScreen extends CaptchaScreen {
 		this.valueY = (int) valueY;
 		this.answer = (int) answer;
 
-		if (this.answer == 0) {
+		if (this.answer == 0 || this.answer != this.operation.getAnswer(this.valueX, this.valueY)) {
 			this.operation = MathOperation.ADDITION;
 			this.valueX = 9;
 			this.valueY = 10;
