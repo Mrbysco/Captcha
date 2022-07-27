@@ -4,8 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.MultiLineLabel;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class MathScreen extends CaptchaScreen {
 	protected MultiLineLabel note = MultiLineLabel.EMPTY;
 
 	public MathScreen(String code, int maxCompletionTime) {
-		super(new TranslatableComponent("captcha.math.screen"), code, maxCompletionTime);
+		super(Component.translatable("captcha.math.screen"), code, maxCompletionTime);
 		this.changeQuestion();
 	}
 
@@ -64,18 +63,18 @@ public class MathScreen extends CaptchaScreen {
 	protected void init() {
 		super.init();
 
-		this.message = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.math.screen"),
-				new TranslatableComponent("captcha.math.screen2"),
-				TextComponent.EMPTY,
-				new TranslatableComponent("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
+		this.message = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.math.screen"),
+				Component.translatable("captcha.math.screen2"),
+				Component.empty(),
+				Component.translatable("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
 		int i = (this.message.getLineCount() + 1) * 9;
 
-		this.answerBox = new NumberEditBox(this.font, 76 + i, 140, 60, 20, TextComponent.EMPTY);
+		this.answerBox = new NumberEditBox(this.font, 76 + i, 140, 60, 20, Component.empty());
 		this.answerBox.setMaxLength(8);
 		this.answerBox.setX(this.width / 2 - this.answerBox.getWidth() / 2);
 		this.addWidget(this.answerBox);
 
-		this.note = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.math.note").withStyle(ChatFormatting.RED)));
+		this.note = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.math.note").withStyle(ChatFormatting.RED)));
 	}
 
 	@Override
@@ -102,10 +101,10 @@ public class MathScreen extends CaptchaScreen {
 		this.answerBox.setValue("");
 		this.changeQuestion();
 
-		this.message = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.math.screen"),
-				new TranslatableComponent("captcha.math.screen2"),
-				TextComponent.EMPTY,
-				new TranslatableComponent("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
+		this.message = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.math.screen"),
+				Component.translatable("captcha.math.screen2"),
+				Component.empty(),
+				Component.translatable("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
 	}
 
 	@Override

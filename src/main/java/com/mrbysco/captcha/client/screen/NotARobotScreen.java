@@ -5,23 +5,22 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Checkbox;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public class NotARobotScreen extends CaptchaScreen {
 	private Checkbox notARobot;
 
 	public NotARobotScreen(String code, int maxCompletionTime) {
-		super(new TranslatableComponent("captcha.notarobot.screen"), code, maxCompletionTime);
+		super(Component.translatable("captcha.notarobot.screen"), code, maxCompletionTime);
 	}
 
 	@Override
 	protected void init() {
 		super.init();
 
-		this.message = MultiLineLabel.create(this.font, new TranslatableComponent("captcha.notarobot.screen"), this.width - 50);
+		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.notarobot.screen"), this.width - 50);
 		int i = (this.message.getLineCount() + 1) * 9;
 
-		Component checkBoxComponent = new TranslatableComponent("captcha.notarobot.checkbox");
+		Component checkBoxComponent = Component.translatable("captcha.notarobot.checkbox");
 		this.addRenderableWidget(this.notARobot = new Checkbox(this.width / 2 - this.font.width(checkBoxComponent) - 20, 76 + i, 150, 20,
 				checkBoxComponent, false));
 	}
@@ -44,7 +43,7 @@ public class NotARobotScreen extends CaptchaScreen {
 		super.resetCaptcha();
 		this.notARobot.onPress();
 
-		this.message = MultiLineLabel.create(this.font, new TranslatableComponent("captcha.notarobot.failed").withStyle(ChatFormatting.RED), this.width - 50);
+		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.notarobot.failed").withStyle(ChatFormatting.RED), this.width - 50);
 	}
 
 	@Override
