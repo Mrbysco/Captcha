@@ -22,7 +22,8 @@ public class CaptchaHandler {
 		Player player = event.player;
 		if (event.phase == Phase.END && event.side.isServer() && player != null && !player.isCreative() && !player.isSpectator()) {
 			Level level = player.level;
-			if (!player.isSpectator() && level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
+			if (!player.isSpectator() && level.getGameTime() >= CaptchaConfig.COMMON.gracePeriod.get() &&
+					level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
 				UUID uuid = player.getUUID();
 				if (!CaptchaManager.completedCaptchaRecently(uuid)) {
 					String code = CaptchaManager.getActiveCode(uuid);
@@ -30,7 +31,6 @@ public class CaptchaHandler {
 						code = CaptchaManager.applyRandomCode(uuid);
 					}
 					if (code != null && !code.isEmpty()) {
-
 						NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
 								new RequireCaptchaMessage(CaptchaEnum.getRandom(random).getCaptchaName(), code, CaptchaConfig.COMMON.captchaTime.get()));
 					}

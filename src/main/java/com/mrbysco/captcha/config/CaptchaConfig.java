@@ -6,6 +6,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class CaptchaConfig {
 	public static class Common {
+		public final IntValue gracePeriod;
 		public final IntValue captchaTime;
 		public final IntValue captchaCooldown;
 
@@ -21,6 +22,10 @@ public class CaptchaConfig {
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("General settings")
 					.push("General");
+
+			gracePeriod = builder
+					.comment("Defines the amount of ticks at the start of a world where no captcha's get requested [Default: 6000]")
+					.defineInRange("gracePeriod", 6000, 0, Integer.MAX_VALUE);
 
 			captchaTime = builder
 					.comment("Defines the amount of time in seconds in which the captcha should be solved [Default: 15]")
