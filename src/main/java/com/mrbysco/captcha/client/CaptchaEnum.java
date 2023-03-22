@@ -5,7 +5,8 @@ import java.util.Random;
 
 public enum CaptchaEnum {
 	ROBOT("robot", 0),
-	MATH("math", 1);
+	MATH("math", 1),
+	TEXT("text", 2);
 
 	private final String name;
 	private final Integer id;

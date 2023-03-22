@@ -44,7 +44,9 @@ public class CaptchaCommands {
 			UUID uuid = player.getUUID();
 			CaptchaManager.forgetUser(uuid);
 			String code = CaptchaManager.applyRandomCode(uuid);
-			NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new RequireCaptchaMessage(captchaName, code, CaptchaConfig.COMMON.captchaTime.get()));
+			NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player),
+					new RequireCaptchaMessage(captchaName, code, CaptchaConfig.COMMON.captchaTime.get(),
+							CaptchaConfig.COMMON.textCaptchaWords.get()));
 		}
 
 		return 0;
