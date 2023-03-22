@@ -32,7 +32,7 @@ public class CaptchaHandler {
 					}
 					if (code != null && !code.isEmpty()) {
 						NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-								new RequireCaptchaMessage(CaptchaEnum.getRandom(random).getCaptchaName(), code, CaptchaConfig.COMMON.captchaTime.get()));
+								new RequireCaptchaMessage(CaptchaEnum.getRandom(random).getCaptchaName(), code, CaptchaConfig.COMMON.captchaTime.get(), CaptchaConfig.COMMON.textCaptchaWords.get()));
 					}
 				}
 			}

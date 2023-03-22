@@ -4,6 +4,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 public class CaptchaConfig {
 	public static class Common {
 		public final IntValue gracePeriod;
@@ -18,6 +20,7 @@ public class CaptchaConfig {
 		public final IntValue multiplicationMaxY;
 		public final IntValue divisionMaxX;
 		public final IntValue divisionMaxY;
+		public final ForgeConfigSpec.ConfigValue<List<? extends String>> textCaptchaWords;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("General settings")
@@ -70,6 +73,18 @@ public class CaptchaConfig {
 			divisionMaxY = builder
 					.comment("Defines the max the second number can be in the division problem [Default: 100]")
 					.defineInRange("divisionMaxY", 100, 30, Integer.MAX_VALUE);
+
+			builder.pop();
+			builder.comment("Math settings")
+					.push("Math");
+
+			textCaptchaWords = builder
+					.comment("List of words that can be used to generate a text captcha (16 character length max)")
+					.defineList("textCaptchaWords", List.of("diamond", "iron", "gold", "emerald", "lapis", "coal", "redstone", "nether",
+							"creeper", "skeleton", "spider", "zombie", "enderman", "endermite", "slime", "ghast",
+							"pig", "cow", "sheep", "chicken", "rabbit", "mooshroom", "villager", "witch", "wither",
+							"blaze", "guardian", "shulker", "ender dragon", "wither", "drowned", "husk", "stray",
+							"phantom", "zoglin", "piglin", "panda", "bee", "cat", "fox", "ocelot"), s -> s instanceof String && !((String) s).isEmpty() && ((String) s).length() <= 16);
 
 			builder.pop();
 		}

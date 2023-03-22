@@ -11,6 +11,7 @@ import net.minecraftforge.network.PacketDistributor;
 public class CaptchaScreen extends Screen {
 	private final String code;
 	protected int timeWaited;
+	protected int messageY = 70;
 	private final int maxCompletionTime;
 	protected MultiLineLabel message = MultiLineLabel.EMPTY;
 
@@ -29,7 +30,7 @@ public class CaptchaScreen extends Screen {
 	@Override
 	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(poseStack);
-		this.message.renderCentered(poseStack, this.width / 2, 70);
+		this.message.renderCentered(poseStack, this.width / 2, messageY);
 		super.render(poseStack, mouseX, mouseY, partialTicks);
 	}
 
