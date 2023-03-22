@@ -6,10 +6,10 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public enum MathOperation {
-	ADDITION("+", CaptchaConfig.COMMON.additionMaxX::get, CaptchaConfig.COMMON.additionMaxY::get),
-	SUBTRACTION("-", CaptchaConfig.COMMON.subtractionMaxX::get, CaptchaConfig.COMMON.additionMaxY::get),
-	MULTIPLICATION("*", CaptchaConfig.COMMON.multiplicationMaxX::get, CaptchaConfig.COMMON.multiplicationMaxY::get),
-	DIVISION("/", CaptchaConfig.COMMON.divisionMaxX::get, CaptchaConfig.COMMON.divisionMaxY::get);
+	ADDITION("+", CaptchaConfig.COMMON.additionMaxX, CaptchaConfig.COMMON.additionMaxY),
+	SUBTRACTION("-", CaptchaConfig.COMMON.subtractionMaxX, CaptchaConfig.COMMON.additionMaxY),
+	MULTIPLICATION("*", CaptchaConfig.COMMON.multiplicationMaxX, CaptchaConfig.COMMON.multiplicationMaxY),
+	DIVISION("/", CaptchaConfig.COMMON.divisionMaxX, CaptchaConfig.COMMON.divisionMaxY);
 
 	private final String symbol;
 	private final Supplier<Integer> maxX;
