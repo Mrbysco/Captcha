@@ -10,7 +10,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public class CompletedCaptchaMessage {
-	private String code;
+	private final String code;
 
 	public CompletedCaptchaMessage(String code) {
 		this.code = code;
