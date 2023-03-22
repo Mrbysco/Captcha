@@ -8,8 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.lwjgl.glfw.GLFW;
 
@@ -26,7 +25,7 @@ public class TextScreen extends CaptchaScreen {
 	private final List<? extends String> configuredWords;
 
 	public TextScreen(String code, int maxCompletionTime, List<? extends String> configuredWords) {
-		super(new TranslatableComponent("captcha.text.screen"), code, maxCompletionTime);
+		super(Component.translatable("captcha.text.screen"), code, maxCompletionTime);
 		this.configuredWords = configuredWords;
 		this.changeText();
 		this.messageY = 170;
@@ -60,14 +59,14 @@ public class TextScreen extends CaptchaScreen {
 	protected void init() {
 		super.init();
 
-		this.message = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.text.screen")));
+		this.message = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.text.screen")));
 
-		this.answerBox = new EditBox(this.font, 76, 190, 120, 20, TextComponent.EMPTY);
+		this.answerBox = new EditBox(this.font, 76, 190, 120, 20, Component.empty());
 		this.answerBox.setMaxLength(16);
 		this.answerBox.setX(this.width / 2 - this.answerBox.getWidth() / 2);
 		this.addWidget(this.answerBox);
 
-		this.note = MultiLineLabel.create(this.font, List.of(new TranslatableComponent("captcha.text.note").withStyle(ChatFormatting.RED)));
+		this.note = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.text.note").withStyle(ChatFormatting.RED)));
 	}
 
 	@Override
