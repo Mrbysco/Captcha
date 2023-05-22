@@ -1,4 +1,4 @@
-package com.mrbysco.captcha.client.screen;
+package com.mrbysco.captcha.client.screen.math;
 
 import com.mrbysco.captcha.config.CaptchaConfig;
 

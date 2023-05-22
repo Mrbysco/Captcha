@@ -9,5 +9,12 @@
   "captcha.math.note": "Note: When filled in incorrectly it will regenerate.",
 
   "captcha.text.screen": "Type the word above:",
-  "captcha.text.note": "Note: When filled in incorrectly it will regenerate."
+  "captcha.text.note": "Note: When filled in incorrectly it will regenerate.",
+
+  "captcha.image.screen": "Select all squares with",
+  "captcha.image.none": "If there are none, click skip",
+  "captcha.image.skip": "Skip",
+  "captcha.image.verify": "Verify",
+  "captcha.text.failed": "Invalid answer / took too long.",
+  "captcha.text.failed2": "Please try again."
 }
