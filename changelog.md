@@ -1,1 +1,1 @@
-* Add Text Captcha
+* Add Image Captcha
