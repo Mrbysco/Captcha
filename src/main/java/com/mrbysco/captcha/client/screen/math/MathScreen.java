@@ -1,6 +1,7 @@
-package com.mrbysco.captcha.client.screen;
+package com.mrbysco.captcha.client.screen.math;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.MultiLineLabel;

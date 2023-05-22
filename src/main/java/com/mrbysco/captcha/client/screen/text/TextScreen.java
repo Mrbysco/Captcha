@@ -1,8 +1,9 @@
-package com.mrbysco.captcha.client.screen;
+package com.mrbysco.captcha.client.screen.text;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;

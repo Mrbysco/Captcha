@@ -1,9 +1,10 @@
 package com.mrbysco.captcha.client;
 
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
-import com.mrbysco.captcha.client.screen.MathScreen;
+import com.mrbysco.captcha.client.screen.image.ImageScreen;
+import com.mrbysco.captcha.client.screen.math.MathScreen;
 import com.mrbysco.captcha.client.screen.NotARobotScreen;
-import com.mrbysco.captcha.client.screen.TextScreen;
+import com.mrbysco.captcha.client.screen.text.TextScreen;
 import net.minecraft.client.Minecraft;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ScreenHandler {
 			default -> Minecraft.getInstance().setScreen(new NotARobotScreen(code, maxCompletionTime));
 			case MATH -> Minecraft.getInstance().setScreen(new MathScreen(code, maxCompletionTime));
 			case TEXT -> Minecraft.getInstance().setScreen(new TextScreen(code, maxCompletionTime, configuredWords));
+			case IMAGE -> Minecraft.getInstance().setScreen(new ImageScreen(code, maxCompletionTime));
 		}
 	}
 }

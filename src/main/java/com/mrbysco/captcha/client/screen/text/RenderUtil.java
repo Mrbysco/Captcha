@@ -1,4 +1,4 @@
-package com.mrbysco.captcha.client.screen;
+package com.mrbysco.captcha.client.screen.text;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.client.renderer.texture.DynamicTexture;
