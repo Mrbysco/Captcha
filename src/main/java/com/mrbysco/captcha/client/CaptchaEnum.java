@@ -1,6 +1,7 @@
 package com.mrbysco.captcha.client;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Random;
 
 public enum CaptchaEnum {
@@ -10,7 +11,7 @@ public enum CaptchaEnum {
 	IMAGE("image", 3);
 
 	private final String name;
-	private final Integer id;
+	private final int id;
 
 	CaptchaEnum(String name, int id) {
 		this.name = name;
@@ -21,7 +22,7 @@ public enum CaptchaEnum {
 		return name;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 

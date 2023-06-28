@@ -67,10 +67,8 @@ public class ImageScreen extends CaptchaScreen {
 		changeImage(false);
 
 		this.errorY = startY + (SQUARE_SIZE * 4) + 16;
-		this.addRenderableWidget(button =
-				new Button(this.width / 2 - 60, startY + (SQUARE_SIZE * 4) + 36, 120, 20,
-						Component.translatable("captcha.image.skip"), (button) -> checkSquares())
-		);
+		this.addRenderableWidget(button = Button.builder(Component.translatable("captcha.image.skip"), (button) -> checkSquares())
+				.bounds(this.width / 2 - 60, startY + (SQUARE_SIZE * 4) + 36, 120, 20).build());
 	}
 
 	private void updateImageSize() {

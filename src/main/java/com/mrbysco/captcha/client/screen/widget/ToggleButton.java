@@ -17,7 +17,7 @@ public class ToggleButton extends Button {
 	private boolean clicked;
 
 	public ToggleButton(int x, int y, int width, int height, int xTexStart, int yTexStart, ResourceLocation resourceLocation, int textureWidth, int textureHeight, Button.OnPress onPress, Component component) {
-		super(x, y, width, height, component, onPress);
+		super(x, y, width, height, component, onPress, DEFAULT_NARRATION);
 		this.textureWidth = textureWidth;
 		this.textureHeight = textureHeight;
 		this.xTexStart = xTexStart;
@@ -35,8 +35,8 @@ public class ToggleButton extends Button {
 	}
 
 	public void setPosition(int x, int y) {
-		this.x = x;
-		this.y = y;
+		this.setX(x);
+		this.setY(y);
 	}
 
 	public void setResourceLocation(ResourceLocation resourceLocation) {
@@ -56,10 +56,10 @@ public class ToggleButton extends Button {
 		RenderSystem.setShaderTexture(0, this.resourceLocation);
 
 		RenderSystem.enableDepthTest();
-		blit(poseStack, this.x, this.y, (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
+		blit(poseStack, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (clicked) {
 			poseStack.pushPose();
-			poseStack.translate(this.x - 1, this.y - 1, 0);
+			poseStack.translate(this.getX() - 1, this.getY() - 1, 0);
 			fill(poseStack, 0, 0, 34, 34, 0x1AFFFF00);
 			poseStack.popPose();
 		}
