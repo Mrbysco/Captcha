@@ -1,9 +1,9 @@
 package com.mrbysco.captcha.client;
 
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
+import com.mrbysco.captcha.client.screen.NotARobotScreen;
 import com.mrbysco.captcha.client.screen.image.ImageScreen;
 import com.mrbysco.captcha.client.screen.math.MathScreen;
-import com.mrbysco.captcha.client.screen.NotARobotScreen;
 import com.mrbysco.captcha.client.screen.text.TextScreen;
 import net.minecraft.client.Minecraft;
 
