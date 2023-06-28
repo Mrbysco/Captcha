@@ -1,11 +1,10 @@
 package com.mrbysco.captcha.client.screen.text;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -18,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class TextScreen extends CaptchaScreen {
+	private static final ResourceLocation TEXTURE = new ResourceLocation("captcha", "text");
 	private static final Random random = new Random();
 	private EditBox answerBox;
 	private String currentWord;
@@ -108,17 +108,16 @@ public class TextScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-		super.render(poseStack, mouseX, mouseY, partialTicks);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.answerBox.render(poseStack, mouseX, mouseY, partialTicks);
+		this.answerBox.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.note.renderCentered(poseStack, this.width / 2, 220);
+		this.note.renderCentered(guiGraphics, this.width / 2, 220);
 
 		if (scrambledImage != null) {
 			NativeImage nativeImage = scrambledImage.getPixels();
-			RenderSystem.setShaderTexture(0, new ResourceLocation("captcha", "text"));
-			blit(poseStack, this.width / 2 - (nativeImage.getWidth() / 2), (80 + nativeImage.getHeight()),
+			guiGraphics.blit(TEXTURE, this.width / 2 - (nativeImage.getWidth() / 2), (80 + nativeImage.getHeight()),
 					0, 0, nativeImage.getWidth(), nativeImage.getHeight(), nativeImage.getWidth(), nativeImage.getHeight());
 		}
 	}

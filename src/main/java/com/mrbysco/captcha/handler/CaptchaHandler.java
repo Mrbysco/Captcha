@@ -21,7 +21,7 @@ public class CaptchaHandler {
 	public static void onPlayerTick(PlayerTickEvent event) {
 		Player player = event.player;
 		if (event.phase == Phase.END && event.side.isServer() && player != null && !player.isCreative() && !player.isSpectator()) {
-			Level level = player.level;
+			Level level = player.level();
 			if (!player.isSpectator() && level.getGameTime() >= CaptchaConfig.COMMON.gracePeriod.get() &&
 					level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
 				UUID uuid = player.getUUID();

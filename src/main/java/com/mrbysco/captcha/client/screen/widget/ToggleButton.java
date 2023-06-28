@@ -2,8 +2,8 @@ package com.mrbysco.captcha.client.screen.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -52,21 +52,19 @@ public class ToggleButton extends Button {
 	}
 
 	@Override
-	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-		this.renderTexture(poseStack, this.resourceLocation, this.getX(), this.getY(), this.xTexStart, this.yTexStart, 0, this.width, this.height, this.textureWidth, this.textureHeight);
+	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		this.renderTexture(guiGraphics, this.resourceLocation, this.getX(), this.getY(), this.xTexStart, this.yTexStart, 0, this.width, this.height, this.textureWidth, this.textureHeight);
 	}
 
 	@Override
-	public void renderTexture(PoseStack poseStack, ResourceLocation resourceLocation, int p_268218_, int p_267959_, int p_268261_, int p_267978_, int p_267937_, int p_268330_, int p_268160_, int p_267985_, int p_268321_) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderTexture(0, this.resourceLocation);
-
+	public void renderTexture(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int p_268218_, int p_267959_, int p_268261_, int p_267978_, int p_267937_, int p_268330_, int p_268160_, int p_267985_, int p_268321_) {
 		RenderSystem.enableDepthTest();
-		blit(poseStack, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
+		guiGraphics.blit(this.resourceLocation, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (clicked) {
+			PoseStack poseStack = guiGraphics.pose();
 			poseStack.pushPose();
 			poseStack.translate(this.getX() - 1, this.getY() - 1, 0);
-			fill(poseStack, 0, 0, 34, 34, 0x1AFFFF00);
+			guiGraphics.fill(0, 0, 34, 34, 0x1AFFFF00);
 			poseStack.popPose();
 		}
 	}

@@ -1,9 +1,9 @@
 package com.mrbysco.captcha.client.screen.math;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
@@ -121,11 +121,11 @@ public class MathScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-		super.render(poseStack, mouseX, mouseY, partialTicks);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.answerBox.render(poseStack, mouseX, mouseY, partialTicks);
+		this.answerBox.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.note.renderCentered(poseStack, this.width / 2, 120);
+		this.note.renderCentered(guiGraphics, this.width / 2, 120);
 	}
 }

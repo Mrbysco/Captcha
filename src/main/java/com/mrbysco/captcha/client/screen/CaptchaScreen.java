@@ -1,8 +1,8 @@
 package com.mrbysco.captcha.client.screen;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrbysco.captcha.network.NetworkHandler;
 import com.mrbysco.captcha.network.message.CompletedCaptchaMessage;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -28,10 +28,10 @@ public class CaptchaScreen extends Screen {
 	}
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(poseStack);
-		this.message.renderCentered(poseStack, this.width / 2, messageY);
-		super.render(poseStack, mouseX, mouseY, partialTicks);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(guiGraphics);
+		this.message.renderCentered(guiGraphics, this.width / 2, messageY);
+		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 	}
 
 	@Override
