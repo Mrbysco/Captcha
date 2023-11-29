@@ -5,14 +5,14 @@ import com.mrbysco.captcha.commands.CaptchaCommands;
 import com.mrbysco.captcha.config.CaptchaConfig;
 import com.mrbysco.captcha.handler.CaptchaHandler;
 import com.mrbysco.captcha.network.NetworkHandler;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 @Mod(Captcha.MOD_ID)
@@ -26,8 +26,8 @@ public class Captcha {
 
 		eventBus.addListener(this::setup);
 
-		MinecraftForge.EVENT_BUS.addListener(this::onCommandRegister);
-		MinecraftForge.EVENT_BUS.addListener(CaptchaHandler::onPlayerTick);
+		NeoForge.EVENT_BUS.addListener(this::onCommandRegister);
+		NeoForge.EVENT_BUS.addListener(CaptchaHandler::onPlayerTick);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {

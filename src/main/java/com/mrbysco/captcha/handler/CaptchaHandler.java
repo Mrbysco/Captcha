@@ -8,9 +8,9 @@ import com.mrbysco.captcha.util.CaptchaManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.event.TickEvent.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.event.TickEvent;
 
 import java.util.Random;
 import java.util.UUID;
@@ -20,7 +20,7 @@ public class CaptchaHandler {
 
 	public static void onPlayerTick(PlayerTickEvent event) {
 		Player player = event.player;
-		if (event.phase == Phase.END && event.side.isServer() && player != null && !player.isCreative() && !player.isSpectator()) {
+		if (event.phase == TickEvent.Phase.END && event.side.isServer() && player != null && !player.isCreative() && !player.isSpectator()) {
 			Level level = player.level();
 			if (!player.isSpectator() && level.getGameTime() >= CaptchaConfig.COMMON.gracePeriod.get() &&
 					level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {

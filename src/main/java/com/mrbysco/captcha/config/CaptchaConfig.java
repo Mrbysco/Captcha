@@ -1,28 +1,27 @@
 package com.mrbysco.captcha.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
 public class CaptchaConfig {
 	public static class Common {
-		public final IntValue gracePeriod;
-		public final IntValue captchaTime;
-		public final IntValue captchaCooldown;
+		public final ModConfigSpec.IntValue gracePeriod;
+		public final ModConfigSpec.IntValue captchaTime;
+		public final ModConfigSpec.IntValue captchaCooldown;
 
-		public final IntValue additionMaxX;
-		public final IntValue additionMaxY;
-		public final IntValue subtractionMaxX;
-		public final IntValue subtractionMaxY;
-		public final IntValue multiplicationMaxX;
-		public final IntValue multiplicationMaxY;
-		public final IntValue divisionMaxX;
-		public final IntValue divisionMaxY;
-		public final ForgeConfigSpec.ConfigValue<List<? extends String>> textCaptchaWords;
+		public final ModConfigSpec.IntValue additionMaxX;
+		public final ModConfigSpec.IntValue additionMaxY;
+		public final ModConfigSpec.IntValue subtractionMaxX;
+		public final ModConfigSpec.IntValue subtractionMaxY;
+		public final ModConfigSpec.IntValue multiplicationMaxX;
+		public final ModConfigSpec.IntValue multiplicationMaxY;
+		public final ModConfigSpec.IntValue divisionMaxX;
+		public final ModConfigSpec.IntValue divisionMaxY;
+		public final ModConfigSpec.ConfigValue<List<? extends String>> textCaptchaWords;
 
-		Common(ForgeConfigSpec.Builder builder) {
+		Common(ModConfigSpec.Builder builder) {
 			builder.comment("General settings")
 					.push("General");
 
@@ -90,11 +89,11 @@ public class CaptchaConfig {
 		}
 	}
 
-	public static final ForgeConfigSpec commonSpec;
+	public static final ModConfigSpec commonSpec;
 	public static final Common COMMON;
 
 	static {
-		final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
+		final Pair<Common, ModConfigSpec> specPair = new ModConfigSpec.Builder().configure(Common::new);
 		commonSpec = specPair.getRight();
 		COMMON = specPair.getLeft();
 	}

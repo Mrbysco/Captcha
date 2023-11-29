@@ -2,12 +2,7 @@ package com.mrbysco.captcha.network.message;
 
 import com.mrbysco.captcha.util.CaptchaManager;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.fml.DistExecutor.SafeRunnable;
-import net.minecraftforge.network.NetworkEvent.Context;
-
-import java.io.Serial;
-import java.util.UUID;
-import java.util.function.Supplier;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class CompletedCaptchaMessage {
 	private final String code;
@@ -24,28 +19,13 @@ public class CompletedCaptchaMessage {
 		return new CompletedCaptchaMessage(packetBuffer.readUtf());
 	}
 
-	public void handle(Supplier<Context> context) {
-		Context ctx = context.get();
+	public void handle(Context ctx) {
 		ctx.enqueueWork(() -> {
 			if (ctx.getDirection().getReceptionSide().isServer() && ctx.getSender() != null) {
-				CompleteCaptcha.complete(ctx.getSender().getUUID(), this.code).run();
+				//Complete Captcha
+				CaptchaManager.setCompletedRecently(ctx.getSender().getUUID(), code);
 			}
 		});
 		ctx.setPacketHandled(true);
-	}
-
-	private static class CompleteCaptcha {
-		private static SafeRunnable complete(UUID uuid, String code) {
-			return new SafeRunnable() {
-				@Serial
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				public void run() {
-					//Complete Captcha
-					CaptchaManager.setCompletedRecently(uuid, code);
-				}
-			};
-		}
 	}
 }
