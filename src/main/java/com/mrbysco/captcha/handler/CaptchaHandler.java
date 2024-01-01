@@ -2,15 +2,13 @@ package com.mrbysco.captcha.handler;
 
 import com.mrbysco.captcha.client.CaptchaEnum;
 import com.mrbysco.captcha.config.CaptchaConfig;
-import com.mrbysco.captcha.network.NetworkHandler;
-import com.mrbysco.captcha.network.message.RequireCaptchaMessage;
+import com.mrbysco.captcha.network.payload.RequireCaptcha;
 import com.mrbysco.captcha.util.CaptchaManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.event.TickEvent.PlayerTickEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.TickEvent.PlayerTickEvent;
 
 import java.util.Random;
 import java.util.UUID;
@@ -24,6 +22,7 @@ public class CaptchaHandler {
 			Level level = player.level();
 			if (!player.isSpectator() && level.getGameTime() >= CaptchaConfig.COMMON.gracePeriod.get() &&
 					level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
+				ServerPlayer serverPlayer = (ServerPlayer) player;
 				UUID uuid = player.getUUID();
 				if (!CaptchaManager.completedCaptchaRecently(uuid)) {
 					String code = CaptchaManager.getActiveCode(uuid);
@@ -31,9 +30,7 @@ public class CaptchaHandler {
 						code = CaptchaManager.applyRandomCode(uuid);
 					}
 					if (code != null && !code.isEmpty()) {
-
-						NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-								new RequireCaptchaMessage(CaptchaEnum.getRandom(random).getCaptchaName(), code, CaptchaConfig.COMMON.captchaTime.get(), CaptchaConfig.COMMON.textCaptchaWords.get()));
+						serverPlayer.connection.send(new RequireCaptcha(CaptchaEnum.getRandom(random).getCaptchaName(), code, CaptchaConfig.COMMON.captchaTime.get(), CaptchaConfig.COMMON.textCaptchaWords.get()));
 					}
 				}
 			}

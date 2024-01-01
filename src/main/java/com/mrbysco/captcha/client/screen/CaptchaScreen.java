@@ -1,12 +1,10 @@
 package com.mrbysco.captcha.client.screen;
 
-import com.mrbysco.captcha.network.NetworkHandler;
-import com.mrbysco.captcha.network.message.CompletedCaptchaMessage;
+import com.mrbysco.captcha.network.payload.CompletedCaptcha;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 public class CaptchaScreen extends Screen {
 	private final String code;
@@ -45,7 +43,7 @@ public class CaptchaScreen extends Screen {
 
 	public void completeCaptcha() {
 		this.minecraft.setScreen(null);
-		NetworkHandler.CHANNEL.send(PacketDistributor.SERVER.noArg(), new CompletedCaptchaMessage(code));
+		this.minecraft.getConnection().send(new CompletedCaptcha(code));
 	}
 
 	public void resetCaptcha() {

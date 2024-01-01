@@ -8,15 +8,13 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mrbysco.captcha.Captcha;
 import com.mrbysco.captcha.client.CaptchaEnum;
 import com.mrbysco.captcha.config.CaptchaConfig;
-import com.mrbysco.captcha.network.NetworkHandler;
-import com.mrbysco.captcha.network.message.RequireCaptchaMessage;
+import com.mrbysco.captcha.network.payload.RequireCaptcha;
 import com.mrbysco.captcha.util.CaptchaManager;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +42,8 @@ public class CaptchaCommands {
 			UUID uuid = player.getUUID();
 			CaptchaManager.forgetUser(uuid);
 			String code = CaptchaManager.applyRandomCode(uuid);
-			NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player),
-					new RequireCaptchaMessage(captchaName, code, CaptchaConfig.COMMON.captchaTime.get(),
-							CaptchaConfig.COMMON.textCaptchaWords.get()));
+			player.connection.send(new RequireCaptcha(captchaName, code, CaptchaConfig.COMMON.captchaTime.get(),
+					CaptchaConfig.COMMON.textCaptchaWords.get()));
 		}
 
 		return 0;

@@ -37,11 +37,9 @@ public class CaptchaManager {
 	}
 
 	public static void setCompletedRecently(UUID uuid, String code) {
-		if (activeMap.containsKey(uuid)) {
-			if (activeMap.get(uuid).equals(code)) {
-				activeMap.remove(uuid);
-				captchaMap.put(uuid, System.currentTimeMillis());
-			}
+		if (activeMap.containsKey(uuid) && activeMap.get(uuid).equals(code)) {
+			activeMap.remove(uuid);
+			captchaMap.put(uuid, System.currentTimeMillis());
 		}
 	}
 
