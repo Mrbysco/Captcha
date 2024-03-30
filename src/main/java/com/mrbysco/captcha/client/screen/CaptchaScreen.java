@@ -30,8 +30,12 @@ public class CaptchaScreen extends Screen {
 	@Override
 	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(poseStack);
-		this.message.renderCentered(poseStack, this.width / 2, messageY);
 		super.render(poseStack, mouseX, mouseY, partialTicks);
+		this.renderMessage(poseStack);
+	}
+
+	public void renderMessage(PoseStack poseStack) {
+		this.message.renderCentered(poseStack, this.width / 2, messageY);
 	}
 
 	@Override

@@ -1,8 +1,11 @@
 package com.mrbysco.captcha.client.screen.image;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public enum ImageEnum {
 	AMETHYST("amethyst", generateAmethyst()),
@@ -276,6 +279,15 @@ public enum ImageEnum {
 	public static ImageEnum getRandom(Random random) {
 		int pick = random.nextInt(ImageEnum.values().length);
 		return ImageEnum.values()[pick];
+	}
+
+	public static ImageEnum getRandom(Random random, ImageEnum... blacklisted) {
+		List<ImageEnum> imageList = Arrays.stream(ImageEnum.values()).collect(Collectors.toList());
+		for (ImageEnum image : blacklisted) {
+			imageList.remove(image);
+		}
+		int pick = random.nextInt(imageList.size());
+		return imageList.get(pick);
 	}
 
 
