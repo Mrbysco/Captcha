@@ -8,7 +8,9 @@ public enum CaptchaEnum {
 	ROBOT("robot", 0),
 	MATH("math", 1),
 	TEXT("text", 2),
-	IMAGE("image", 3);
+	IMAGE("image", 3),
+	SLIDE("slide", 4),
+	WINRAR("winrar", 5);
 
 	private final String name;
 	private final int id;
@@ -38,6 +40,10 @@ public enum CaptchaEnum {
 
 	public static CaptchaEnum getRandom(Random random) {
 		int pick = random.nextInt(CaptchaEnum.values().length);
-		return CaptchaEnum.values()[pick];
+		CaptchaEnum choice = CaptchaEnum.values()[pick];
+		if (choice == WINRAR && !random.nextBoolean()) {
+			choice = MATH;
+		}
+		return choice;
 	}
 }
