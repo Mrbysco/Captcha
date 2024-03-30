@@ -37,6 +37,7 @@ public class MathScreen extends CaptchaScreen {
 			while ((valueX < valueY || valueX % valueY != 0) && tries < 20) {
 				valueX = 1 + this.operation.generateX();
 				valueY = 1 + this.operation.generateY();
+				tries++;
 			}
 			answer = valueX / valueY;
 		}
