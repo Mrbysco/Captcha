@@ -16,5 +16,19 @@
   "captcha.image.skip": "Skip",
   "captcha.image.verify": "Verify",
   "captcha.text.failed": "Invalid answer / took too long.",
-  "captcha.text.failed2": "Please try again."
+  "captcha.text.failed2": "Please try again.",
+
+  "captcha.winrar.screen": "Please purchase Captcha license",
+  "captcha.winrar.message1": "Please note that Captcha",
+  "captcha.winrar.message2": "is not free software. After",
+  "captcha.winrar.message3": "a 40 day trail period you",
+  "captcha.winrar.message4": "must either buy a license",
+  "captcha.winrar.message5": "or remove it from your",
+  "captcha.winrar.message6": "computer.",
+  "captcha.winrar.buy": "Buy online",
+  "captcha.winrar.how": "How to buy",
+  "captcha.winrar.close": "Close",
+  "captcha.winrar.help": "Help",
+
+  "captcha.slide.screen": "Slide to complete the puzzle"
 }
