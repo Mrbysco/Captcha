@@ -95,7 +95,7 @@ public class WinRARScreen extends CaptchaScreen {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-		this.blit(poseStack, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
+		blit(poseStack, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
 
 	@Override
