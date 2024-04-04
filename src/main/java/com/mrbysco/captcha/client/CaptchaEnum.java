@@ -8,7 +8,8 @@ public enum CaptchaEnum {
 	MATH("math", 1),
 	TEXT("text", 2),
 	IMAGE("image", 3),
-	WINRAR("winrar", 4);
+	SLIDE("slide", 4),
+	WINRAR("winrar", 5);
 
 	private final String name;
 	private final Integer id;

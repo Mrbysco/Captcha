@@ -5,6 +5,7 @@ import com.mrbysco.captcha.client.screen.NotARobotScreen;
 import com.mrbysco.captcha.client.screen.WinRARScreen;
 import com.mrbysco.captcha.client.screen.image.ImageScreen;
 import com.mrbysco.captcha.client.screen.math.MathScreen;
+import com.mrbysco.captcha.client.screen.slide.SlideScreen;
 import com.mrbysco.captcha.client.screen.text.TextScreen;
 import net.minecraft.client.Minecraft;
 
@@ -24,6 +25,7 @@ public class ScreenHandler {
 			case MATH -> Minecraft.getInstance().setScreen(new MathScreen(code, maxCompletionTime));
 			case TEXT -> Minecraft.getInstance().setScreen(new TextScreen(code, maxCompletionTime, configuredWords));
 			case IMAGE -> Minecraft.getInstance().setScreen(new ImageScreen(code, maxCompletionTime));
+			case SLIDE -> Minecraft.getInstance().setScreen(new SlideScreen(code, maxCompletionTime));
 			case WINRAR -> Minecraft.getInstance().setScreen(new WinRARScreen(code, maxCompletionTime));
 		}
 	}
