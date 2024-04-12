@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "captcha",
+  "version": "${version}",
+  "name": "Captcha",
+  "description": "Ever thought it'd be a great idea to require a Captcha to open an inventory? Well, this is the mod you are looking for!",
+  "authors": [
+    "Mrbysco",
+    "ShyNieke",
+    "JackRuby1"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/captcha",
+    "sources": "https://github.com/Mrbysco/captcha",
+    "issues": "https://github.com/Mrbysco/captcha/issues"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mrbysco.captcha.CaptchaFabric"
+    ],
+    "client": [
+      "com.mrbysco.captcha.CaptchaFabricClient"
+    ],
+    "modmenu": [
+      "com.mrbysco.captcha.config.CaptchaModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "captcha.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14",
+    "fabric": "*",
+    "minecraft": "~1.20",
+    "java": ">=17",
+    "cloth-config": ">=11"
+  }
+}
