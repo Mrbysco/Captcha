@@ -64,7 +64,7 @@ public class CaptchaConfigForge {
 
 			multiplicationMaxY = builder
 					.comment("Defines the max the second number can be in the multiplication problem [Default: 20]")
-					.defineInRange("multiplicationMaxY", 20, 30, Integer.MAX_VALUE);
+					.defineInRange("multiplicationMaxY", 20, 20, Integer.MAX_VALUE);
 
 			divisionMaxX = builder
 					.comment("Defines the max the first number can be in the division problem [Default: 100]")

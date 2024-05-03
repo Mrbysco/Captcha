@@ -41,7 +41,7 @@ public class CaptchaConfigFabric implements ConfigData {
 		@Comment("Defines the max the first number can be in the multiplication problem [Default: 20]")
 		public int multiplicationMaxX = 30;
 		@Comment("Defines the max the second number can be in the multiplication problem [Default: 20]")
-		@ConfigEntry.BoundedDiscrete(min = 30, max = Integer.MAX_VALUE)
+		@ConfigEntry.BoundedDiscrete(min = 20, max = Integer.MAX_VALUE)
 		public int multiplicationMaxY = 20;
 		@Comment("Defines the max the first number can be in the division problem [Default: 100]")
 		@ConfigEntry.BoundedDiscrete(min = 1, max = Integer.MAX_VALUE)
