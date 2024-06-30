@@ -71,6 +71,6 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
 	@Override
 	public void sendCompletedCaptchaMessage(String code) {
-		PacketDistributor.SERVER.noArg().send(new CompletedCaptcha(code));
+		PacketDistributor.sendToServer(new CompletedCaptcha(code));
 	}
 }

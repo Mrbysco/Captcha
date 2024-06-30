@@ -7,13 +7,11 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 public class CaptchaFabricClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		ClientPlayNetworking.registerGlobalReceiver(Constants.REQUIRE_CAPTCHA, (client, handler, buf, responseSender) -> {
-			RequireCaptcha data = new RequireCaptcha(buf);
-
-			client.execute(() -> {
+		ClientPlayNetworking.registerGlobalReceiver(RequireCaptcha.ID, (payload, context) -> {
+			context.client().execute(() -> {
 				//Open Captcha Screen
-				com.mrbysco.captcha.client.ScreenHandler.openCaptcha(data.captchaName(), data.code(),
-						data.maxCompletionTime(), data.configuredWords());
+				com.mrbysco.captcha.client.ScreenHandler.openCaptcha(payload.captchaName(), payload.code(),
+						payload.maxCompletionTime(), payload.configuredWords());
 			});
 		});
 	}
