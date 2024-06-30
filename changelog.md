@@ -1,1 +1,1 @@
-* Fix the config range of `multiplicationMaxY` being 30 and above while setting it to 20 by default.
+* Initial multiloader build for 1.20.4
