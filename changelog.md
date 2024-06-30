@@ -1,1 +1,1 @@
-* Initial multiloader build for 1.20.6
+* Initial multiloader build for 1.21
