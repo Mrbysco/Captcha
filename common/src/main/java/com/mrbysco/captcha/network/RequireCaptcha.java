@@ -12,7 +12,7 @@ public record RequireCaptcha(String captchaName, String code, int maxCompletionT
 	public static final StreamCodec<FriendlyByteBuf, RequireCaptcha> CODEC = CustomPacketPayload.codec(
 			RequireCaptcha::write,
 			RequireCaptcha::new);
-	public static final Type<RequireCaptcha> ID = new Type<>(new ResourceLocation("captcha", "require_captcha"));
+	public static final Type<RequireCaptcha> ID = new Type<>(ResourceLocation.fromNamespaceAndPath("captcha", "require_captcha"));
 
 	public RequireCaptcha(final FriendlyByteBuf packetBuffer) {
 		this(packetBuffer.readUtf(), packetBuffer.readUtf(), packetBuffer.readInt(), packetBuffer.readList(FriendlyByteBuf::readUtf));

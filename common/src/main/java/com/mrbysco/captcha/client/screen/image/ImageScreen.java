@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class ImageScreen extends CaptchaScreen {
 	private static final Random random = new Random();
-	private ResourceLocation IMAGE = new ResourceLocation("captcha", "textures/gui/warp.png");
+	private ResourceLocation IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/warp.png");
 	private int SQUARE_SIZE = 64; // The size of each square button
 	private boolean[][] correctSquares = new boolean[4][4];
 	private int tries = 0;
@@ -34,12 +34,10 @@ public class ImageScreen extends CaptchaScreen {
 	protected void init() {
 		super.init();
 
-		this.message = MultiLineLabel.create(this.font, List.of(
-				Component.empty(),
+		this.message = MultiLineLabel.create(this.font, Component.empty(),
 				Component.translatable("captcha.image.screen"),
 				Component.empty(),
-				Component.translatable("captcha.image.none")
-		));
+				Component.translatable("captcha.image.none"));
 
 		// Calculate the size and position of each square button
 		updateImageSize();
@@ -83,7 +81,7 @@ public class ImageScreen extends CaptchaScreen {
 
 	private void changeImage(boolean reset) {
 		ImageEnum image = ImageEnum.getRandom(random);
-		IMAGE = new ResourceLocation("captcha", "textures/gui/" + image.getImageName() + ".png");
+		IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/" + image.getImageName() + ".png");
 		List<Map.Entry<String, boolean[][]>> entries = image.getDataMap().entrySet().stream().toList();
 		Map.Entry<String, boolean[][]> entry = entries.get(random.nextInt(entries.size()));
 		String object = entry.getKey();
@@ -101,18 +99,14 @@ public class ImageScreen extends CaptchaScreen {
 		}
 
 		if (reset) {
-			error = MultiLineLabel.create(this.font, List.of(
-					Component.translatable("captcha.text.failed").withStyle(ChatFormatting.RED),
-					Component.translatable("captcha.text.failed2").withStyle(ChatFormatting.RED)
-			));
+			error = MultiLineLabel.create(this.font, Component.translatable("captcha.text.failed").withStyle(ChatFormatting.RED),
+					Component.translatable("captcha.text.failed2").withStyle(ChatFormatting.RED));
 		}
-		this.message = MultiLineLabel.create(this.font, List.of(
-				Component.translatable("captcha.image.screen"),
+		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.image.screen"),
 				Component.empty(),
 				Component.literal(object).withStyle(ChatFormatting.GOLD),
 				Component.empty(),
-				Component.translatable("captcha.image.none")
-		));
+				Component.translatable("captcha.image.none"));
 	}
 
 	/**

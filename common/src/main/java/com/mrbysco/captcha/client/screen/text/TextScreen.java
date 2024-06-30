@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class TextScreen extends CaptchaScreen {
-	private static final ResourceLocation TEXTURE = new ResourceLocation("captcha", "text");
+	private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("captcha", "text");
 	private static final Random random = new Random();
 	private EditBox answerBox;
 	private String currentWord;
@@ -49,7 +49,7 @@ public class TextScreen extends CaptchaScreen {
 
 			if (scrambledImage != null) {
 				Minecraft mc = Minecraft.getInstance();
-				mc.getTextureManager().register(new ResourceLocation("captcha", "text"), scrambledImage);
+				mc.getTextureManager().register(ResourceLocation.fromNamespaceAndPath("captcha", "text"), scrambledImage);
 			}
 		} catch (IOException ignored) {
 
@@ -60,14 +60,14 @@ public class TextScreen extends CaptchaScreen {
 	protected void init() {
 		super.init();
 
-		this.message = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.text.screen")));
+		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.text.screen"));
 
 		this.answerBox = new EditBox(this.font, 76, 190, 120, 20, Component.empty());
 		this.answerBox.setMaxLength(16);
 		this.answerBox.setX(this.width / 2 - this.answerBox.getWidth() / 2);
 		this.addWidget(this.answerBox);
 
-		this.note = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.text.note").withStyle(ChatFormatting.RED)));
+		this.note = MultiLineLabel.create(this.font,Component.translatable("captcha.text.note").withStyle(ChatFormatting.RED));
 	}
 
 	@Override

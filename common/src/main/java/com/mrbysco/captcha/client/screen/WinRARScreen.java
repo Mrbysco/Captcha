@@ -8,10 +8,8 @@ import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.List;
-
 public class WinRARScreen extends CaptchaScreen {
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(Constants.MOD_ID, "textures/gui/popup.png");
+	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/popup.png");
 	protected int imageWidth = 256;
 	protected int imageHeight = 166;
 	protected int leftPos;
@@ -27,14 +25,14 @@ public class WinRARScreen extends CaptchaScreen {
 		this.leftPos = (this.width - this.imageWidth) / 2;
 		this.topPos = (this.height - this.imageHeight) / 2;
 
-		this.message = MultiLineLabel.create(this.font, List.of(
+		this.message = MultiLineLabel.create(this.font,
 				Component.translatable("captcha.winrar.message1"),
 				Component.translatable("captcha.winrar.message2"),
 				Component.translatable("captcha.winrar.message3"),
 				Component.translatable("captcha.winrar.message4"),
 				Component.translatable("captcha.winrar.message5"),
 				Component.translatable("captcha.winrar.message6")
-		));
+		);
 
 		int yOffset = 24;
 		this.addRenderableWidget(
@@ -52,13 +50,13 @@ public class WinRARScreen extends CaptchaScreen {
 		);
 		yOffset += 22;
 		this.addRenderableWidget(
-				Button.builder(	Component.translatable("captcha.winrar.close"), (button) -> {
+				Button.builder(Component.translatable("captcha.winrar.close"), (button) -> {
 					completeCaptcha();
 				}).bounds(this.width / 2 + 40, topPos + yOffset, 80, 20).build()
 		);
 		yOffset += 22;
 		this.addRenderableWidget(
-				Button.builder(	Component.translatable("captcha.winrar.help"), (button) -> {
+				Button.builder(Component.translatable("captcha.winrar.help"), (button) -> {
 					//Open Curseforge page
 					Util.getPlatform().openUri("https://www.curseforge.com/minecraft/mc-mods/captcha");
 				}).bounds(this.width / 2 + 40, topPos + yOffset, 80, 20).build()

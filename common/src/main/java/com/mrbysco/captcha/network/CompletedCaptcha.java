@@ -9,7 +9,7 @@ public record CompletedCaptcha(String code) implements CustomPacketPayload {
 	public static final StreamCodec<FriendlyByteBuf, CompletedCaptcha> CODEC = CustomPacketPayload.codec(
 			CompletedCaptcha::write,
 			CompletedCaptcha::new);
-	public static final Type<CompletedCaptcha> ID = new Type<>(new ResourceLocation("captcha", "completed_captcha"));
+	public static final Type<CompletedCaptcha> ID = new Type<>(ResourceLocation.fromNamespaceAndPath("captcha", "completed_captcha"));
 
 	public CompletedCaptcha(final FriendlyByteBuf packetBuffer) {
 		this(packetBuffer.readUtf());

@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class SlideScreen extends CaptchaScreen {
 	private static final Random random = new Random();
-	private ResourceLocation IMAGE = new ResourceLocation("captcha", "textures/gui/amethyst.png");
+	private ResourceLocation IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/amethyst.png");
 
 	protected int puzzleY, puzzleX = 16;
 	protected double acceptedMin, acceptedMax;
@@ -25,7 +25,7 @@ public class SlideScreen extends CaptchaScreen {
 
 	private void resetPuzzle() {
 		ImageEnum image = ImageEnum.getRandom(random, ImageEnum.SANDY, ImageEnum.VEHICLE);
-		IMAGE = new ResourceLocation("captcha", "textures/gui/" + image.getImageName() + ".png");
+		IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/" + image.getImageName() + ".png");
 
 		OptionalInt randomNumber = random.ints(32, (84 + 1)).findFirst();
 		this.puzzleX = randomNumber.isPresent() ? randomNumber.getAsInt() : 32;

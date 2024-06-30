@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[3,)"
+loaderVersion="[4,)"
 issueTrackerURL="https://github.com/Mrbysco/Captcha/issues"
 license="MIT"
 
@@ -16,6 +16,6 @@ Ever thought it'd be a great idea to require a Captcha to open an inventory? Wel
 [[dependencies.captcha]]
 modId="minecraft"
 type="required"
-versionRange="[1.20.6,1.21)"
+versionRange="[1.21,1.22)"
 ordering="NONE"
 side="BOTH"

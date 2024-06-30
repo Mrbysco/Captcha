@@ -8,7 +8,6 @@ import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
-import java.util.List;
 import java.util.Random;
 
 public class MathScreen extends CaptchaScreen {
@@ -65,10 +64,10 @@ public class MathScreen extends CaptchaScreen {
 	protected void init() {
 		super.init();
 
-		this.message = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.math.screen"),
+		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.math.screen"),
 				Component.translatable("captcha.math.screen2"),
 				Component.empty(),
-				Component.translatable("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
+				Component.translatable("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW));
 		int i = (this.message.getLineCount() + 1) * 9;
 
 		this.answerBox = new NumberEditBox(this.font, 76 + i, 140, 60, 20, Component.empty());
@@ -76,7 +75,7 @@ public class MathScreen extends CaptchaScreen {
 		this.answerBox.setX(this.width / 2 - this.answerBox.getWidth() / 2);
 		this.addWidget(this.answerBox);
 
-		this.note = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.math.note").withStyle(ChatFormatting.RED)));
+		this.note = MultiLineLabel.create(this.font, Component.translatable("captcha.math.note").withStyle(ChatFormatting.RED));
 	}
 
 	@Override
@@ -103,10 +102,10 @@ public class MathScreen extends CaptchaScreen {
 		this.answerBox.setValue("");
 		this.changeQuestion();
 
-		this.message = MultiLineLabel.create(this.font, List.of(Component.translatable("captcha.math.screen"),
+		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.math.screen"),
 				Component.translatable("captcha.math.screen2"),
 				Component.empty(),
-				Component.translatable("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW)));
+				Component.translatable("captcha.math.question", valueX, operation.getSymbol(), valueY).withStyle(ChatFormatting.YELLOW));
 	}
 
 	@Override
