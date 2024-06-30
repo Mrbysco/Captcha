@@ -21,8 +21,8 @@ public class NotARobotScreen extends CaptchaScreen {
 		int i = (this.message.getLineCount() + 1) * 9;
 
 		Component checkBoxComponent = Component.translatable("captcha.notarobot.checkbox");
-		this.addRenderableWidget(this.notARobot = new Checkbox(this.width / 2 - this.font.width(checkBoxComponent) - 20, 76 + i, 150, 20,
-				checkBoxComponent, false));
+		this.addRenderableWidget(this.notARobot = Checkbox.builder(checkBoxComponent, this.font)
+				.pos(this.width / 2 - this.font.width(checkBoxComponent) - 20, 76 + i).build());
 	}
 
 	@Override

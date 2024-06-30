@@ -28,11 +28,12 @@ public class SlideScreen extends CaptchaScreen {
 		IMAGE = new ResourceLocation("captcha", "textures/gui/" + image.getImageName() + ".png");
 
 		OptionalInt randomNumber = random.ints(32, (84 + 1)).findFirst();
-		this.puzzleX = randomNumber.getAsInt();
+		this.puzzleX = randomNumber.isPresent() ? randomNumber.getAsInt() : 32;
 		this.acceptedMin = this.puzzleX - 0.1D - 16;
 		this.acceptedMax = this.puzzleX + 0.4D - 16;
 
-		this.puzzleY = random.ints(32, 84 + 1).findFirst().getAsInt();
+		randomNumber = random.ints(32, (84 + 1)).findFirst();
+		this.puzzleY = randomNumber.isPresent() ? randomNumber.getAsInt() : 32;
 
 		if (this.slider != null)
 			this.slider.setValue(0);
@@ -93,8 +94,8 @@ public class SlideScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public void renderBackground(GuiGraphics guiGraphics) {
-		super.renderBackground(guiGraphics);
+	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
 		guiGraphics.blit(IMAGE, this.width / 2 - 100, this.height / 2 - 100, 0, 0, 200, 200, 200, 200);
 	}
 }

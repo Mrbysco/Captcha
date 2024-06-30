@@ -1,9 +1,6 @@
 package com.mrbysco.captcha.platform.services;
 
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
-
-import java.util.List;
 
 public interface IPlatformHelper {
 
@@ -20,20 +17,6 @@ public interface IPlatformHelper {
 	 * @return The grace period in ticks.
 	 */
 	int getGracePeriod();
-
-	/**
-	 * Get the Captcha Time from the config.
-	 *
-	 * @return The time in seconds.
-	 */
-	int getCaptchaTime();
-
-	/**
-	 * Get the Text Captcha Words from the config.
-	 *
-	 * @return The list of words.
-	 */
-	List<? extends String> getTextCaptchaWords();
 
 	/**
 	 * Get the max X value for the addition operation.

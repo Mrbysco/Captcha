@@ -1,6 +1,6 @@
 package com.mrbysco.captcha;
 
-import com.mrbysco.captcha.network.RequireCaptchaData;
+import com.mrbysco.captcha.network.RequireCaptcha;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
@@ -8,7 +8,7 @@ public class CaptchaFabricClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ClientPlayNetworking.registerGlobalReceiver(Constants.REQUIRE_CAPTCHA, (client, handler, buf, responseSender) -> {
-			RequireCaptchaData data = RequireCaptchaData.decode(buf);
+			RequireCaptcha data = new RequireCaptcha(buf);
 
 			client.execute(() -> {
 				//Open Captcha Screen

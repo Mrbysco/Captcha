@@ -1,10 +1,9 @@
 package com.mrbysco.captcha.platform;
 
 import com.mrbysco.captcha.Constants;
-import com.mrbysco.captcha.client.CaptchaEnum;
 import com.mrbysco.captcha.config.CaptchaConfigFabric;
-import com.mrbysco.captcha.network.CompleteCaptchaData;
-import com.mrbysco.captcha.network.RequireCaptchaData;
+import com.mrbysco.captcha.network.CompletedCaptcha;
+import com.mrbysco.captcha.network.RequireCaptcha;
 import com.mrbysco.captcha.platform.services.IPlatformHelper;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -12,8 +11,6 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-
-import java.util.List;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 
@@ -27,18 +24,6 @@ public class FabricPlatformHelper implements IPlatformHelper {
 	public int getGracePeriod() {
 		CaptchaConfigFabric config = AutoConfig.getConfigHolder(CaptchaConfigFabric.class).getConfig();
 		return config.general.gracePeriod;
-	}
-
-	@Override
-	public int getCaptchaTime() {
-		CaptchaConfigFabric config = AutoConfig.getConfigHolder(CaptchaConfigFabric.class).getConfig();
-		return config.general.captchaTime;
-	}
-
-	@Override
-	public List<? extends String> getTextCaptchaWords() {
-		CaptchaConfigFabric config = AutoConfig.getConfigHolder(CaptchaConfigFabric.class).getConfig();
-		return config.text.textCaptchaWords;
 	}
 
 	@Override
@@ -92,22 +77,22 @@ public class FabricPlatformHelper implements IPlatformHelper {
 	@Override
 	public void sendRequireCaptchaMessage(ServerPlayer serverPlayer, String captchaName, String code) {
 		CaptchaConfigFabric config = AutoConfig.getConfigHolder(CaptchaConfigFabric.class).getConfig();
-		RequireCaptchaData data = new RequireCaptchaData(
+		RequireCaptcha data = new RequireCaptcha(
 				captchaName, code,
 				config.general.captchaTime, config.text.textCaptchaWords);
 
 		FriendlyByteBuf buf = PacketByteBufs.create();
-		data.encode(buf);
+		data.write(buf);
 
 		ServerPlayNetworking.send(serverPlayer, Constants.REQUIRE_CAPTCHA, buf);
 	}
 
 	@Override
 	public void sendCompletedCaptchaMessage(String code) {
-		CompleteCaptchaData data = new CompleteCaptchaData(code);
+		CompletedCaptcha data = new CompletedCaptcha(code);
 
 		FriendlyByteBuf buf = PacketByteBufs.create();
-		data.encode(buf);
+		data.write(buf);
 
 		ClientPlayNetworking.send(Constants.COMPLETE_CAPTCHA, buf);
 	}

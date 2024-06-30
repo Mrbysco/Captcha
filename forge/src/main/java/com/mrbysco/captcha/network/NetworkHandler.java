@@ -1,25 +1,17 @@
 package com.mrbysco.captcha.network;
 
 import com.mrbysco.captcha.Constants;
-import com.mrbysco.captcha.network.message.CompletedCaptchaMessage;
-import com.mrbysco.captcha.network.message.RequireCaptchaMessage;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import com.mrbysco.captcha.network.handler.ClientPayloadHandler;
+import com.mrbysco.captcha.network.handler.ServerPayloadHandler;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
+import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 
 public class NetworkHandler {
-	private static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-			new ResourceLocation(Constants.MOD_ID, "main"),
-			() -> PROTOCOL_VERSION,
-			PROTOCOL_VERSION::equals,
-			PROTOCOL_VERSION::equals
-	);
-
-	private static int id = 0;
-
-	public static void init() {
-		CHANNEL.registerMessage(id++, RequireCaptchaMessage.class, RequireCaptchaMessage::encode, RequireCaptchaMessage::decode, RequireCaptchaMessage::handle);
-		CHANNEL.registerMessage(id++, CompletedCaptchaMessage.class, CompletedCaptchaMessage::encode, CompletedCaptchaMessage::decode, CompletedCaptchaMessage::handle);
+	public static void setupPackets(final RegisterPayloadHandlerEvent event) {
+		final IPayloadRegistrar registrar = event.registrar(Constants.MOD_ID);
+		registrar.play(RequireCaptcha.ID, RequireCaptcha::new, handler -> handler
+				.client(ClientPayloadHandler.getInstance()::handleData));
+		registrar.play(CompletedCaptcha.ID, CompletedCaptcha::new, handler -> handler
+				.server(ServerPayloadHandler.getInstance()::handleData));
 	}
 }

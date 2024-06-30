@@ -3,7 +3,7 @@ package com.mrbysco.captcha;
 import com.mrbysco.captcha.callback.PlayerTickCallback;
 import com.mrbysco.captcha.commands.CaptchaCommands;
 import com.mrbysco.captcha.config.CaptchaConfigFabric;
-import com.mrbysco.captcha.network.CompleteCaptchaData;
+import com.mrbysco.captcha.network.CompletedCaptcha;
 import com.mrbysco.captcha.util.CaptchaManager;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
@@ -22,9 +22,7 @@ public class CaptchaFabric implements ModInitializer {
 
 		CommonClass.init();
 
-		CommandRegistrationCallback.EVENT.register((commandDispatcher, buildContext, selection) -> {
-			CaptchaCommands.initializeCommands(commandDispatcher);
-		});
+		CommandRegistrationCallback.EVENT.register((commandDispatcher, buildContext, selection) -> CaptchaCommands.initializeCommands(commandDispatcher));
 
 		PlayerTickCallback.EVENT.register((player) -> {
 			CommonClass.onPlayerTick(player);
@@ -32,7 +30,7 @@ public class CaptchaFabric implements ModInitializer {
 		});
 
 		ServerPlayNetworking.registerGlobalReceiver(Constants.COMPLETE_CAPTCHA, (server, player, handler, buf, responseSender) -> {
-			CompleteCaptchaData data = CompleteCaptchaData.decode(buf);
+			CompletedCaptcha data = new CompletedCaptcha(buf);
 
 			server.execute(() -> {
 				//Complete Captcha

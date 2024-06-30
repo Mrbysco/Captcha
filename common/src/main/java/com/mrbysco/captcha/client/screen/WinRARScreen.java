@@ -81,11 +81,12 @@ public class WinRARScreen extends CaptchaScreen {
 
 		guiGraphics.hLine(leftPos + 3, leftPos + this.imageWidth - 4, topPos + 18, 0xFFFFFFFF);
 		guiGraphics.drawString(this.font, this.title, leftPos + 8, topPos + 6, 4210752, false);
+		this.renderMessage(guiGraphics);
 	}
 
 	@Override
-	public void renderBackground(GuiGraphics guiGraphics) {
-		super.renderBackground(guiGraphics);
+	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
 		guiGraphics.blit(TEXTURE_LOCATION, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
 

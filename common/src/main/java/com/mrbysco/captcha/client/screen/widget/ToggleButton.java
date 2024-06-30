@@ -53,11 +53,6 @@ public class ToggleButton extends Button {
 
 	@Override
 	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderTexture(guiGraphics, this.resourceLocation, this.getX(), this.getY(), this.xTexStart, this.yTexStart, 0, this.width, this.height, this.textureWidth, this.textureHeight);
-	}
-
-	@Override
-	public void renderTexture(GuiGraphics guiGraphics, ResourceLocation resourceLocation, int p_268218_, int p_267959_, int p_268261_, int p_267978_, int p_267937_, int p_268330_, int p_268160_, int p_267985_, int p_268321_) {
 		RenderSystem.enableDepthTest();
 		guiGraphics.blit(this.resourceLocation, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (clicked) {
