@@ -1,9 +1,9 @@
 package com.mrbysco.captcha.network;
 
+import com.mrbysco.captcha.Constants;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public record RequireCaptcha(String captchaName, String code, int maxCompletionT
 	public static final StreamCodec<FriendlyByteBuf, RequireCaptcha> CODEC = CustomPacketPayload.codec(
 			RequireCaptcha::write,
 			RequireCaptcha::new);
-	public static final Type<RequireCaptcha> ID = new Type<>(ResourceLocation.fromNamespaceAndPath("captcha", "require_captcha"));
+	public static final Type<RequireCaptcha> ID = new Type<>(Constants.REQUIRE_CAPTCHA);
 
 	public RequireCaptcha(final FriendlyByteBuf packetBuffer) {
 		this(packetBuffer.readUtf(), packetBuffer.readUtf(), packetBuffer.readInt(), packetBuffer.readList(FriendlyByteBuf::readUtf));

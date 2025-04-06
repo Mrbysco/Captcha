@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -117,7 +118,7 @@ public class TextScreen extends CaptchaScreen {
 
 		if (scrambledImage != null) {
 			NativeImage nativeImage = scrambledImage.getPixels();
-			guiGraphics.blit(TEXTURE, this.width / 2 - (nativeImage.getWidth() / 2), (80 + nativeImage.getHeight()),
+			guiGraphics.blit(RenderType::guiTextured, TEXTURE, this.width / 2 - (nativeImage.getWidth() / 2), (80 + nativeImage.getHeight()),
 					0, 0, nativeImage.getWidth(), nativeImage.getHeight(), nativeImage.getWidth(), nativeImage.getHeight());
 		}
 	}

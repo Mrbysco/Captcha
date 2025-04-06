@@ -14,6 +14,5 @@ public class Constants {
 	public static final ResourceLocation REQUIRE_CAPTCHA = ResourceLocation.fromNamespaceAndPath(MOD_ID, "require_captcha");
 	public static final ResourceLocation COMPLETE_CAPTCHA = ResourceLocation.fromNamespaceAndPath(MOD_ID, "complete_captcha");
 
-
 	public static final Random random = new Random();
 }

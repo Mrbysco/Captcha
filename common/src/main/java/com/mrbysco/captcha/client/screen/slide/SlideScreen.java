@@ -3,6 +3,7 @@ package com.mrbysco.captcha.client.screen.slide;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.image.ImageEnum;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -89,13 +90,13 @@ public class SlideScreen extends CaptchaScreen {
 		guiGraphics.fillGradient(pieceX, pieceY, pieceX + 32, pieceY + 32, 0xA6000000, 0xA6000000);
 
 		int sliderX = (this.width / 2 - 100) + (int) (this.slider.getValue() * 2);
-		guiGraphics.blit(IMAGE, sliderX, pieceY, this.puzzleX * 2 - 32, this.puzzleY * 2 - 32, 32, 32, 200, 200);
+		guiGraphics.blit(RenderType::guiTextured, IMAGE, sliderX, pieceY, this.puzzleX * 2 - 32, this.puzzleY * 2 - 32, 32, 32, 200, 200);
 		guiGraphics.fillGradient(sliderX, pieceY, sliderX + 32, pieceY + 32, 0x1AFFFFFF, 0x1AFFFFFF);
 	}
 
 	@Override
 	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
-		guiGraphics.blit(IMAGE, this.width / 2 - 100, this.height / 2 - 100, 0, 0, 200, 200, 200, 200);
+		guiGraphics.blit(RenderType::guiTextured, IMAGE, this.width / 2 - 100, this.height / 2 - 100, 0, 0, 200, 200, 200, 200);
 	}
 }

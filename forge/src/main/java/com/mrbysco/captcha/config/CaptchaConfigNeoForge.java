@@ -84,7 +84,7 @@ public class CaptchaConfigNeoForge {
 							"creeper", "skeleton", "spider", "zombie", "enderman", "endermite", "slime", "ghast",
 							"pig", "cow", "sheep", "chicken", "rabbit", "mooshroom", "villager", "witch", "wither",
 							"blaze", "guardian", "shulker", "ender dragon", "wither", "drowned", "husk", "stray",
-							"phantom", "zoglin", "piglin", "panda", "bee", "cat", "fox", "ocelot"), s -> s instanceof String && !((String) s).isEmpty() && ((String) s).length() <= 16);
+							"phantom", "zoglin", "piglin", "panda", "bee", "cat", "fox", "ocelot"), String::new, s -> s instanceof String && !((String) s).isEmpty() && ((String) s).length() <= 16);
 
 			builder.pop();
 		}
