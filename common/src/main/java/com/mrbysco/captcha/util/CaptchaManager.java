@@ -33,7 +33,7 @@ public class CaptchaManager {
 	}
 
 	public static String generateRandomCode() {
-		return RandomStringUtils.secure().next(10);
+		return RandomStringUtils.secure().nextAlphanumeric(10);
 	}
 
 	public static void setCompletedRecently(UUID uuid, String code) {

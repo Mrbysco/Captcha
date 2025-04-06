@@ -54,7 +54,7 @@ public class ToggleButton extends Button {
 
 	@Override
 	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		RenderSystem.enableDepthTest();
+//		RenderSystem.enableDepthTest();
 		guiGraphics.blit(RenderType::guiTextured, this.resourceLocation, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (clicked) {
 			PoseStack poseStack = guiGraphics.pose();

@@ -42,6 +42,6 @@ public class RenderUtil {
 
 		ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
 		ImageIO.write(image, "png", arrayOutputStream);
-		return new DynamicTexture(NativeImage.read(new ByteArrayInputStream(arrayOutputStream.toByteArray())));
+		return new DynamicTexture(() -> "text_captcha", NativeImage.read(new ByteArrayInputStream(arrayOutputStream.toByteArray())));
 	}
 }
