@@ -1,6 +1,7 @@
 package com.mrbysco.captcha.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -11,6 +12,7 @@ public class CaptchaConfigNeoForge {
 		public final IntValue gracePeriod;
 		public final IntValue captchaTime;
 		public final IntValue captchaCooldown;
+		public final BooleanValue disableCooldown;
 
 		public final IntValue additionMaxX;
 		public final IntValue additionMaxY;
@@ -37,6 +39,10 @@ public class CaptchaConfigNeoForge {
 			captchaCooldown = builder
 					.comment("Defines the cooldown between captcha requests in seconds [Default: 900 (15 minutes)]")
 					.defineInRange("captchaCooldown", 900, 30, Integer.MAX_VALUE);
+
+			disableCooldown = builder
+					.comment("Disable automatic captcha cooldown [Default: false]")
+					.define("disableCooldown", false);
 
 			builder.pop();
 			builder.comment("Math settings")

@@ -12,6 +12,12 @@ import net.minecraft.server.level.ServerPlayer;
 public class FabricPlatformHelper implements IPlatformHelper {
 
 	@Override
+	public boolean cooldownDisabled() {
+		CaptchaConfigFabric config = AutoConfig.getConfigHolder(CaptchaConfigFabric.class).getConfig();
+		return config.general.disableCooldown;
+	}
+
+	@Override
 	public int getCaptchaCooldown() {
 		CaptchaConfigFabric config = AutoConfig.getConfigHolder(CaptchaConfigFabric.class).getConfig();
 		return config.general.captchaCooldown;

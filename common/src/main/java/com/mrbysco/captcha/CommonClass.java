@@ -17,7 +17,7 @@ public class CommonClass {
 
 	public static void onPlayerTick(Player player) {
 		/*event.phase == Phase.END && event.side.isServer() && */
-		if (player != null && !player.isCreative() && !player.isSpectator()) {
+		if (player != null && !player.isCreative() && !player.isSpectator() && !Services.PLATFORM.cooldownDisabled()) {
 			Level level = player.level();
 			if (!player.isSpectator() && level.getGameTime() >= Services.PLATFORM.getGracePeriod() &&
 					level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {

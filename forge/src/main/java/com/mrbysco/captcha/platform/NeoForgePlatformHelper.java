@@ -9,6 +9,10 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 public class NeoForgePlatformHelper implements IPlatformHelper {
 
+	@Override
+	public boolean cooldownDisabled() {
+		return CaptchaConfigNeoForge.COMMON.disableCooldown.get();
+	}
 
 	@Override
 	public int getCaptchaCooldown() {

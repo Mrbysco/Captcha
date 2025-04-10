@@ -23,6 +23,8 @@ public class CaptchaConfigFabric implements ConfigData {
 		@Comment("Defines the cooldown between captcha requests in seconds [Default: 900 (15 minutes)]")
 		@ConfigEntry.BoundedDiscrete(min = 30, max = Integer.MAX_VALUE)
 		public int captchaCooldown = 900;
+		@Comment("Disable automatic captcha cooldown [Default: false]")
+		public boolean disableCooldown = false;
 	}
 
 	@CollapsibleObject

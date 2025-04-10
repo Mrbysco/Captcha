@@ -5,6 +5,13 @@ import net.minecraft.server.level.ServerPlayer;
 public interface IPlatformHelper {
 
 	/**
+	 * Check if the captcha cooldown is disabled in the config.
+	 *
+	 * @return True if the cooldown is disabled, false otherwise.
+	 */
+	boolean cooldownDisabled();
+
+	/**
 	 * Get the Captcha Cooldown from the config.
 	 *
 	 * @return The cooldown in seconds.
