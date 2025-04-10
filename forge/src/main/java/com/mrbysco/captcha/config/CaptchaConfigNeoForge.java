@@ -27,7 +27,7 @@ public class CaptchaConfigNeoForge {
 					.push("General");
 
 			gracePeriod = builder
-					.comment("")
+					.comment("Defines the amount of ticks at the start of a world where no captcha's get requested [Default: 6000]")
 					.defineInRange("gracePeriod", 6000, 0, Integer.MAX_VALUE);
 
 			captchaTime = builder
