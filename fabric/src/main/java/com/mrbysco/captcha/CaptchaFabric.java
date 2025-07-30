@@ -35,7 +35,7 @@ public class CaptchaFabric implements ModInitializer {
 		PayloadTypeRegistry.playC2S().register(CompletedCaptcha.ID, CompletedCaptcha.CODEC);
 
 		ServerPlayNetworking.registerGlobalReceiver(CompletedCaptcha.ID, (payload, context) -> {
-			context.player().server.execute(() -> {
+			context.player().getServer().execute(() -> {
 				//Complete Captcha
 				CaptchaManager.setCompletedRecently(context.player().getUUID(), payload.code());
 			});

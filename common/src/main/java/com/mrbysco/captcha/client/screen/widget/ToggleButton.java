@@ -1,12 +1,11 @@
 package com.mrbysco.captcha.client.screen.widget;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import org.joml.Matrix3x2fStack;
 
 public class ToggleButton extends Button {
 
@@ -55,13 +54,13 @@ public class ToggleButton extends Button {
 	@Override
 	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 //		RenderSystem.enableDepthTest();
-		guiGraphics.blit(RenderType::guiTextured, this.resourceLocation, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.resourceLocation, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (clicked) {
-			PoseStack poseStack = guiGraphics.pose();
-			poseStack.pushPose();
-			poseStack.translate(this.getX() - 1, this.getY() - 1, 0);
+			Matrix3x2fStack poseStack = guiGraphics.pose();
+			poseStack.pushMatrix();
+			poseStack.translate(this.getX() - 1, this.getY() - 1);
 			guiGraphics.fill(0, 0, 34, 34, 0x1AFFFF00);
-			poseStack.popPose();
+			poseStack.popMatrix();
 		}
 	}
 }

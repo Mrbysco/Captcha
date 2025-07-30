@@ -5,9 +5,10 @@ import net.minecraft.Util;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ARGB;
 
 public class WinRARScreen extends CaptchaScreen {
 	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/popup.png");
@@ -79,21 +80,21 @@ public class WinRARScreen extends CaptchaScreen {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
 		guiGraphics.hLine(leftPos + 3, leftPos + this.imageWidth - 4, topPos + 18, 0xFFFFFFFF);
-		guiGraphics.drawString(this.font, this.title, leftPos + 8, topPos + 6, 4210752, false);
+		guiGraphics.drawString(this.font, this.title, leftPos + 8, topPos + 6, ARGB.opaque(4210752), false);
 		this.renderMessage(guiGraphics);
 	}
 
 	@Override
 	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
-		guiGraphics.blit(RenderType::guiTextured, TEXTURE_LOCATION, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 	}
 
 	@Override
 	public void renderMessage(GuiGraphics guiGraphics) {
 		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 30, 0xFFA0A0A0);
 		guiGraphics.vLine(leftPos + 8, topPos + 30, topPos + 100, 0xFFA0A0A0);
-		this.message.renderLeftAlignedNoShadow(guiGraphics, leftPos + 16, topPos + 36, 10, 0);
+		this.message.renderLeftAlignedNoShadow(guiGraphics, leftPos + 16, topPos + 36, 10, ARGB.opaque(0));
 		guiGraphics.vLine(leftPos + 160, topPos + 30, topPos + 100, 0xFFA0A0A0);
 		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 100, 0xFFA0A0A0);
 	}

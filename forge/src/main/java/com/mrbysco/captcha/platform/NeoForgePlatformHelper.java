@@ -5,11 +5,10 @@ import com.mrbysco.captcha.network.CompletedCaptcha;
 import com.mrbysco.captcha.network.RequireCaptcha;
 import com.mrbysco.captcha.platform.services.IPlatformHelper;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 public class NeoForgePlatformHelper implements IPlatformHelper {
-
-
+	
 	@Override
 	public int getCaptchaCooldown() {
 		return CaptchaConfigNeoForge.COMMON.captchaCooldown.get();
@@ -71,6 +70,6 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
 	@Override
 	public void sendCompletedCaptchaMessage(String code) {
-		PacketDistributor.sendToServer(new CompletedCaptcha(code));
+		ClientPacketDistributor.sendToServer(new CompletedCaptcha(code));
 	}
 }
