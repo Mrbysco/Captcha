@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ARGB;
 
 public class CaptchaScreen extends Screen {
 	private final String code;
@@ -32,7 +33,7 @@ public class CaptchaScreen extends Screen {
 	}
 
 	public void renderMessage(GuiGraphics guiGraphics) {
-		this.message.renderCentered(guiGraphics, this.width / 2, messageY);
+		this.message.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, messageY, 10, false, ARGB.opaque(0));
 	}
 
 	@Override

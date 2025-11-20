@@ -9,6 +9,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ARGB;
 
 import java.util.List;
 import java.util.Map;
@@ -171,6 +172,6 @@ public class ImageScreen extends CaptchaScreen {
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.error.renderCentered(guiGraphics, this.width / 2, this.errorY);
+		this.error.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, this.errorY, 10, false, ARGB.opaque(0));
 	}
 }

@@ -7,10 +7,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ARGB;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.IOException;
@@ -68,7 +70,7 @@ public class TextScreen extends CaptchaScreen {
 		this.answerBox.setX(this.width / 2 - this.answerBox.getWidth() / 2);
 		this.addWidget(this.answerBox);
 
-		this.note = MultiLineLabel.create(this.font,Component.translatable("captcha.text.note").withStyle(ChatFormatting.RED));
+		this.note = MultiLineLabel.create(this.font, Component.translatable("captcha.text.note").withStyle(ChatFormatting.RED));
 	}
 
 	@Override
@@ -97,10 +99,10 @@ public class TextScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		if (super.keyPressed(keyCode, scanCode, modifiers)) {
+	public boolean keyPressed(KeyEvent event) {
+		if (super.keyPressed(event)) {
 			return true;
-		} else if (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER) {
+		} else if (event.key() == GLFW.GLFW_KEY_ENTER || event.key() == GLFW.GLFW_KEY_KP_ENTER) {
 			this.checkAnswer();
 			return true;
 		} else {
@@ -114,7 +116,7 @@ public class TextScreen extends CaptchaScreen {
 
 		this.answerBox.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.note.renderCentered(guiGraphics, this.width / 2, 220);
+		this.note.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, 220, 10, false, ARGB.opaque(0));
 
 		if (scrambledImage != null) {
 			NativeImage nativeImage = scrambledImage.getPixels();

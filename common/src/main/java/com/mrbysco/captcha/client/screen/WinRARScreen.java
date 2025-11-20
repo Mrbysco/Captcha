@@ -94,7 +94,7 @@ public class WinRARScreen extends CaptchaScreen {
 	public void renderMessage(GuiGraphics guiGraphics) {
 		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 30, 0xFFA0A0A0);
 		guiGraphics.vLine(leftPos + 8, topPos + 30, topPos + 100, 0xFFA0A0A0);
-		this.message.renderLeftAlignedNoShadow(guiGraphics, leftPos + 16, topPos + 36, 10, ARGB.opaque(0));
+		this.message.render(guiGraphics, MultiLineLabel.Align.LEFT, leftPos + 16, topPos + 36, 10, false, ARGB.opaque(0));
 		guiGraphics.vLine(leftPos + 160, topPos + 30, topPos + 100, 0xFFA0A0A0);
 		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 100, 0xFFA0A0A0);
 	}

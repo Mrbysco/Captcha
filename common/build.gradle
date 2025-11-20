@@ -2,7 +2,7 @@ plugins {
     id 'idea'
     id 'java'
     id 'maven-publish'
-    id "net.neoforged.moddev" version "2.0.101"
+    id "net.neoforged.moddev" version "2.0.119"
 }
 
 base {
@@ -18,14 +18,15 @@ neoForge {
     // https://github.com/neoforged/FancyModLoader/blob/a952595eaaddd571fbc53f43847680b00894e0c1/loader/src/main/java/net/neoforged/fml/loading/moddiscovery/ModFile.java#L118
     def at = file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
-        accessTransformers.add(at.absolutePath)
+        accessTransformers.from(at.absolutePath)
     }
-    addModdingDependenciesTo(sourceSets["test"])
     parchment {
         minecraftVersion = "${parchment_minecraft_version}"
         mappingsVersion = "${parchment_mapping_version}"
     }
 }
+
+sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     compileOnly "net.fabricmc:sponge-mixin:${mixin_version}"
@@ -36,13 +37,14 @@ dependencies {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        register('mavenJava', MavenPublication) {
             groupId project.group
             artifactId base.archivesName.get()
             version project.version
             from components.java
         }
     }
+
     repositories {
         if (System.getenv().SAP_SECRET) {
             maven {

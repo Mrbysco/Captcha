@@ -2,6 +2,8 @@ package com.mrbysco.captcha.client.screen.slide;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import org.lwjgl.glfw.GLFW;
@@ -111,20 +113,22 @@ public class ModSlider extends AbstractSliderButton {
 	}
 
 	@Override
-	public void onClick(double mouseX, double mouseY) {
-		this.setValueFromMouse(mouseX);
+	public void onClick(MouseButtonEvent buttonEvent, boolean doubleClick) {
+		super.onClick(buttonEvent, doubleClick);
+		this.setValueFromMouse(buttonEvent.x());
 	}
 
 	@Override
-	protected void onDrag(double mouseX, double mouseY, double dragX, double dragY) {
-		super.onDrag(mouseX, mouseY, dragX, dragY);
-		this.setValueFromMouse(mouseX);
+	protected void onDrag(MouseButtonEvent buttonEvent, double p_93591_, double p_93592_) {
+		super.onDrag(buttonEvent, p_93591_, p_93592_);
+		this.setValueFromMouse(buttonEvent.x());
 	}
 
+
 	@Override
-	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		boolean flag = keyCode == GLFW.GLFW_KEY_LEFT;
-		if (flag || keyCode == GLFW.GLFW_KEY_RIGHT) {
+	public boolean keyPressed(KeyEvent event) {
+		boolean flag = event.key() == GLFW.GLFW_KEY_LEFT;
+		if (flag || event.key() == GLFW.GLFW_KEY_RIGHT) {
 			if (this.minValue > this.maxValue)
 				flag = !flag;
 			float f = flag ? -1F : 1F;

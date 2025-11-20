@@ -1,5 +1,6 @@
 package com.mrbysco.captcha.client.screen.slide;
 
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 public class PuzzleSlider extends ModSlider {
@@ -15,8 +16,8 @@ public class PuzzleSlider extends ModSlider {
 	}
 
 	@Override
-	public void onRelease(double p_93609_, double p_93610_) {
-		super.onRelease(p_93609_, p_93610_);
+	public void onRelease(MouseButtonEvent buttonEvent) {
+		super.onRelease(buttonEvent);
 		this.onDrop.OnDrop(this);
 	}
 

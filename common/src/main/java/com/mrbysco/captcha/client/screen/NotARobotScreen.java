@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Checkbox;
 import net.minecraft.client.gui.components.MultiLineLabel;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
 
 public class NotARobotScreen extends CaptchaScreen {
@@ -41,7 +42,7 @@ public class NotARobotScreen extends CaptchaScreen {
 	@Override
 	public void resetCaptcha() {
 		super.resetCaptcha();
-		this.notARobot.onPress();
+		this.notARobot.onPress(new KeyEvent(0, 0, 0));
 
 		this.message = MultiLineLabel.create(this.font, Component.translatable("captcha.notarobot.failed").withStyle(ChatFormatting.RED), this.width - 50);
 	}

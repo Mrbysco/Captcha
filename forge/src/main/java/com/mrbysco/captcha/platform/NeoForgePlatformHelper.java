@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 public class NeoForgePlatformHelper implements IPlatformHelper {
-	
+
 	@Override
 	public int getCaptchaCooldown() {
 		return CaptchaConfigNeoForge.COMMON.captchaCooldown.get();
@@ -63,7 +63,8 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 	public void sendRequireCaptchaMessage(ServerPlayer serverPlayer, String captchaName, String code) {
 		RequireCaptcha data = new RequireCaptcha(
 				captchaName, code,
-				CaptchaConfigNeoForge.COMMON.captchaTime.get(), CaptchaConfigNeoForge.COMMON.textCaptchaWords.get());
+				CaptchaConfigNeoForge.COMMON.captchaTime.get(),
+				CaptchaConfigNeoForge.COMMON.textCaptchaWords.get().stream().map(Object::toString).toList());
 
 		serverPlayer.connection.send(data);
 	}
