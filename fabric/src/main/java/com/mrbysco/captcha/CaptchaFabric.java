@@ -2,25 +2,23 @@ package com.mrbysco.captcha;
 
 import com.mrbysco.captcha.callback.PlayerTickCallback;
 import com.mrbysco.captcha.commands.CaptchaCommands;
-import com.mrbysco.captcha.config.CaptchaConfigFabric;
+import com.mrbysco.captcha.config.CaptchaConfig;
 import com.mrbysco.captcha.network.CompletedCaptcha;
 import com.mrbysco.captcha.network.RequireCaptcha;
 import com.mrbysco.captcha.util.CaptchaManager;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.world.InteractionResult;
+import net.neoforged.fml.config.ModConfig;
 
 public class CaptchaFabric implements ModInitializer {
-	public static ConfigHolder<CaptchaConfigFabric> config;
 
 	@Override
 	public void onInitialize() {
-		config = AutoConfig.register(CaptchaConfigFabric.class, Toml4jConfigSerializer::new);
+		ConfigRegistry.INSTANCE.register(Constants.MOD_ID, ModConfig.Type.COMMON, CaptchaConfig.commonSpec);
 
 		CommonClass.init();
 
@@ -31,8 +29,8 @@ public class CaptchaFabric implements ModInitializer {
 			return InteractionResult.PASS;
 		});
 
-		PayloadTypeRegistry.playS2C().register(RequireCaptcha.ID, RequireCaptcha.CODEC);
-		PayloadTypeRegistry.playC2S().register(CompletedCaptcha.ID, CompletedCaptcha.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(RequireCaptcha.ID, RequireCaptcha.CODEC);
+		PayloadTypeRegistry.serverboundPlay().register(CompletedCaptcha.ID, CompletedCaptcha.CODEC);
 
 		ServerPlayNetworking.registerGlobalReceiver(CompletedCaptcha.ID, (payload, context) -> {
 			context.server().execute(() -> {

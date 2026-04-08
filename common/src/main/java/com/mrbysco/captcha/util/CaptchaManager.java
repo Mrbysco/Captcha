@@ -1,6 +1,6 @@
 package com.mrbysco.captcha.util;
 
-import com.mrbysco.captcha.platform.Services;
+import com.mrbysco.captcha.config.CaptchaConfig;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class CaptchaManager {
 			long lastCompleted = captchaMap.get(uuid);
 			long currentTime = System.currentTimeMillis();
 
-			return (currentTime - lastCompleted) < (Services.PLATFORM.getCaptchaCooldown() * 1000L);
+			return (currentTime - lastCompleted) < (CaptchaConfig.COMMON.captchaCooldown.get() * 1000L);
 		}
 
 		return false;

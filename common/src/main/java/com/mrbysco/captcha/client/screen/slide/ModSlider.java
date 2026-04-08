@@ -1,6 +1,5 @@
 package com.mrbysco.captcha.client.screen.slide;
 
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -189,10 +188,5 @@ public class ModSlider extends AbstractSliderButton {
 
 	@Override
 	protected void applyValue() {
-	}
-
-	@Override
-	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-		super.renderWidget(guiGraphics, mouseX, mouseY, partialTick);
 	}
 }

@@ -1,15 +1,15 @@
 package com.mrbysco.captcha.client.screen.math;
 
-import com.mrbysco.captcha.platform.Services;
+import com.mrbysco.captcha.config.CaptchaConfig;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
 public enum MathOperation {
-	ADDITION("+", Services.PLATFORM::getAdditionMaxX, Services.PLATFORM::getAdditionMaxY),
-	SUBTRACTION("-", Services.PLATFORM::getSubtractionMaxX, Services.PLATFORM::getAdditionMaxY),
-	MULTIPLICATION("*", Services.PLATFORM::getMultiplicationMaxX, Services.PLATFORM::getMultiplicationMaxY),
-	DIVISION("/", Services.PLATFORM::getDivisionMaxX, Services.PLATFORM::getDivisionMaxY);
+	ADDITION("+", CaptchaConfig.COMMON.additionMaxX, CaptchaConfig.COMMON.additionMaxY),
+	SUBTRACTION("-", CaptchaConfig.COMMON.subtractionMaxX, CaptchaConfig.COMMON.subtractionMaxY),
+	MULTIPLICATION("*", CaptchaConfig.COMMON.multiplicationMaxX, CaptchaConfig.COMMON.multiplicationMaxY),
+	DIVISION("/", CaptchaConfig.COMMON.divisionMaxX, CaptchaConfig.COMMON.divisionMaxY);
 
 	private final String symbol;
 	private final Supplier<Integer> maxX;

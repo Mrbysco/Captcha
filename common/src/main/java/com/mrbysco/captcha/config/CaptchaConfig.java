@@ -6,7 +6,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
-public class CaptchaConfigNeoForge {
+public class CaptchaConfig {
 	public static class Common {
 		public final IntValue gracePeriod;
 		public final IntValue captchaTime;

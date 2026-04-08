@@ -1,13 +1,11 @@
 package com.mrbysco.captcha.client.screen;
 
 import com.mrbysco.captcha.platform.Services;
-import net.minecraft.client.gui.ActiveTextCollector;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.ARGB;
 
 public class CaptchaScreen extends Screen {
 	private final String code;
@@ -29,12 +27,12 @@ public class CaptchaScreen extends Screen {
 	}
 
 	@Override
-	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
-		this.renderMessage(guiGraphics);
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+		super.extractBackground(guiGraphics, mouseX, mouseY, partialTick);
+		this.extractMessage(guiGraphics);
 	}
 
-	public void renderMessage(GuiGraphics guiGraphics) {
+	public void extractMessage(GuiGraphicsExtractor guiGraphics) {
 		this.message.visitLines(TextAlignment.CENTER, this.width / 2, messageY, 10, guiGraphics.textRenderer());
 	}
 

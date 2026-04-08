@@ -1,8 +1,7 @@
 package com.mrbysco.captcha.client.screen;
 
 import com.mrbysco.captcha.Constants;
-import net.minecraft.util.Util;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
@@ -10,6 +9,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
+import net.minecraft.util.Util;
 
 public class WinRARScreen extends CaptchaScreen {
 	private static final Identifier TEXTURE_LOCATION = Constants.modLoc("textures/gui/popup.png");
@@ -77,26 +77,26 @@ public class WinRARScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+	public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 
-		guiGraphics.hLine(leftPos + 3, leftPos + this.imageWidth - 4, topPos + 18, 0xFFFFFFFF);
-		guiGraphics.drawString(this.font, this.title, leftPos + 8, topPos + 6, ARGB.opaque(4210752), false);
-		this.renderMessage(guiGraphics);
+		guiGraphics.horizontalLine(leftPos + 3, leftPos + this.imageWidth - 4, topPos + 18, 0xFFFFFFFF);
+		guiGraphics.text(this.font, this.title, leftPos + 8, topPos + 6, ARGB.opaque(4210752), false);
+		this.extractMessage(guiGraphics);
 	}
 
 	@Override
-	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-		super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+		super.extractBackground(guiGraphics, mouseX, mouseY, partialTick);
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, leftPos, topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 	}
 
 	@Override
-	public void renderMessage(GuiGraphics guiGraphics) {
-		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 30, 0xFFA0A0A0);
-		guiGraphics.vLine(leftPos + 8, topPos + 30, topPos + 100, 0xFFA0A0A0);
+	public void extractMessage(GuiGraphicsExtractor guiGraphics) {
+		guiGraphics.horizontalLine(leftPos + 8, leftPos + 160, topPos + 30, 0xFFA0A0A0);
+		guiGraphics.verticalLine(leftPos + 8, topPos + 30, topPos + 100, 0xFFA0A0A0);
 		this.message.visitLines(TextAlignment.LEFT, leftPos + 16, topPos + 36, 10, guiGraphics.textRenderer());
-		guiGraphics.vLine(leftPos + 160, topPos + 30, topPos + 100, 0xFFA0A0A0);
-		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 100, 0xFFA0A0A0);
+		guiGraphics.verticalLine(leftPos + 160, topPos + 30, topPos + 100, 0xFFA0A0A0);
+		guiGraphics.horizontalLine(leftPos + 8, leftPos + 160, topPos + 100, 0xFFA0A0A0);
 	}
 }

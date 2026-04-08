@@ -3,7 +3,7 @@ package com.mrbysco.captcha.client.screen.math;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.input.KeyEvent;
@@ -123,11 +123,11 @@ public class MathScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+	public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 
 		if (this.answerBox != null)
-			this.answerBox.render(guiGraphics, mouseX, mouseY, partialTicks);
+			this.answerBox.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 
 		this.note.visitLines(TextAlignment.CENTER, this.width / 2, 120, 10, guiGraphics.textRenderer());
 	}

@@ -1,7 +1,6 @@
 package com.mrbysco.captcha;
 
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

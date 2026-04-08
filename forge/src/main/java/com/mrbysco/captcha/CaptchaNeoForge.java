@@ -1,7 +1,7 @@
 package com.mrbysco.captcha;
 
 import com.mrbysco.captcha.commands.CaptchaCommands;
-import com.mrbysco.captcha.config.CaptchaConfigNeoForge;
+import com.mrbysco.captcha.config.CaptchaConfig;
 import com.mrbysco.captcha.network.NetworkHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.api.distmarker.Dist;
@@ -19,7 +19,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 public class CaptchaNeoForge {
 
 	public CaptchaNeoForge(IEventBus eventBus, ModContainer container, Dist dist) {
-		container.registerConfig(ModConfig.Type.COMMON, CaptchaConfigNeoForge.commonSpec);
+		container.registerConfig(ModConfig.Type.COMMON, CaptchaConfig.commonSpec);
 
 		CommonClass.init();
 

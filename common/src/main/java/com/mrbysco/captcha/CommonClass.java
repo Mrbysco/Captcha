@@ -1,6 +1,7 @@
 package com.mrbysco.captcha;
 
 import com.mrbysco.captcha.client.CaptchaEnum;
+import com.mrbysco.captcha.config.CaptchaConfig;
 import com.mrbysco.captcha.platform.Services;
 import com.mrbysco.captcha.util.CaptchaManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,8 +20,8 @@ public class CommonClass {
 		/*event.phase == Phase.END && event.side.isServer() && */
 		if (player != null && !player.isCreative() && !player.isSpectator()) {
 			Level level = player.level();
-			if (!player.isSpectator() && level.getGameTime() >= Services.PLATFORM.getGracePeriod() &&
-					level.getGameTime() % 50 == 0 && level.random.nextInt(10) < 2) {
+			if (!player.isSpectator() && level.getGameTime() >= CaptchaConfig.COMMON.gracePeriod.get() &&
+					level.getGameTime() % 50 == 0 && level.getRandom().nextInt(10) < 2) {
 				UUID uuid = player.getUUID();
 				if (!CaptchaManager.completedCaptchaRecently(uuid)) {
 					String code = CaptchaManager.getActiveCode(uuid);
