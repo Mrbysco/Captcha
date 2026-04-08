@@ -1,17 +1,18 @@
 package com.mrbysco.captcha.client.screen;
 
 import com.mrbysco.captcha.Constants;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 
 public class WinRARScreen extends CaptchaScreen {
-	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/popup.png");
+	private static final Identifier TEXTURE_LOCATION = Constants.modLoc("textures/gui/popup.png");
 	protected int imageWidth = 256;
 	protected int imageHeight = 166;
 	protected int leftPos;
@@ -94,7 +95,7 @@ public class WinRARScreen extends CaptchaScreen {
 	public void renderMessage(GuiGraphics guiGraphics) {
 		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 30, 0xFFA0A0A0);
 		guiGraphics.vLine(leftPos + 8, topPos + 30, topPos + 100, 0xFFA0A0A0);
-		this.message.render(guiGraphics, MultiLineLabel.Align.LEFT, leftPos + 16, topPos + 36, 10, false, ARGB.opaque(0));
+		this.message.visitLines(TextAlignment.LEFT, leftPos + 16, topPos + 36, 10, guiGraphics.textRenderer());
 		guiGraphics.vLine(leftPos + 160, topPos + 30, topPos + 100, 0xFFA0A0A0);
 		guiGraphics.hLine(leftPos + 8, leftPos + 160, topPos + 100, 0xFFA0A0A0);
 	}

@@ -1,18 +1,19 @@
 package com.mrbysco.captcha.client.screen.text;
 
 import com.mojang.blaze3d.platform.NativeImage;
+import com.mrbysco.captcha.Constants;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ARGB;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 public class TextScreen extends CaptchaScreen {
-	private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("captcha", "text");
+	private static final Identifier TEXTURE = Constants.modLoc("text");
 	private static final Random random = new Random();
 	private EditBox answerBox;
 	private String currentWord;
@@ -52,7 +53,7 @@ public class TextScreen extends CaptchaScreen {
 
 			if (scrambledImage != null) {
 				Minecraft mc = Minecraft.getInstance();
-				mc.getTextureManager().register(ResourceLocation.fromNamespaceAndPath("captcha", "text"), scrambledImage);
+				mc.getTextureManager().register(Constants.modLoc("text"), scrambledImage);
 			}
 		} catch (IOException ignored) {
 
@@ -116,7 +117,7 @@ public class TextScreen extends CaptchaScreen {
 
 		this.answerBox.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.note.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, 220, 10, false, ARGB.opaque(0));
+		this.note.visitLines(TextAlignment.CENTER, this.width / 2, 220, 10, guiGraphics.textRenderer());
 
 		if (scrambledImage != null) {
 			NativeImage nativeImage = scrambledImage.getPixels();

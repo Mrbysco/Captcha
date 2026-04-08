@@ -1,18 +1,19 @@
 package com.mrbysco.captcha.client.screen.slide;
 
+import com.mrbysco.captcha.Constants;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.image.ImageEnum;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.OptionalInt;
 import java.util.Random;
 
 public class SlideScreen extends CaptchaScreen {
 	private static final Random random = new Random();
-	private ResourceLocation IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/amethyst.png");
+	private Identifier IMAGE = Constants.modLoc("textures/gui/amethyst.png");
 
 	protected int puzzleY, puzzleX = 16;
 	protected double acceptedMin, acceptedMax;
@@ -26,7 +27,7 @@ public class SlideScreen extends CaptchaScreen {
 
 	private void resetPuzzle() {
 		ImageEnum image = ImageEnum.getRandom(random, ImageEnum.SANDY, ImageEnum.VEHICLE);
-		IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/" + image.getImageName() + ".png");
+		IMAGE = Constants.modLoc("textures/gui/" + image.getImageName() + ".png");
 
 		OptionalInt randomNumber = random.ints(32, (84 + 1)).findFirst();
 		this.puzzleX = randomNumber.isPresent() ? randomNumber.getAsInt() : 32;

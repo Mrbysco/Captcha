@@ -4,7 +4,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.joml.Matrix3x2fStack;
 
 public class ToggleButton extends Button {
@@ -13,10 +13,10 @@ public class ToggleButton extends Button {
 	private int yTexStart;
 	private final int textureWidth;
 	private final int textureHeight;
-	private ResourceLocation resourceLocation;
+	private Identifier resourceLocation;
 	private boolean clicked;
 
-	public ToggleButton(int x, int y, int width, int height, int xTexStart, int yTexStart, ResourceLocation resourceLocation, int textureWidth, int textureHeight, Button.OnPress onPress, Component component) {
+	public ToggleButton(int x, int y, int width, int height, int xTexStart, int yTexStart, Identifier resourceLocation, int textureWidth, int textureHeight, Button.OnPress onPress, Component component) {
 		super(x, y, width, height, component, onPress, DEFAULT_NARRATION);
 		this.textureWidth = textureWidth;
 		this.textureHeight = textureHeight;
@@ -39,7 +39,7 @@ public class ToggleButton extends Button {
 		this.setY(y);
 	}
 
-	public void setResourceLocation(ResourceLocation resourceLocation) {
+	public void setResourceLocation(Identifier resourceLocation) {
 		this.resourceLocation = resourceLocation;
 	}
 
@@ -52,8 +52,7 @@ public class ToggleButton extends Button {
 	}
 
 	@Override
-	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-//		RenderSystem.enableDepthTest();
+	protected void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.resourceLocation, this.getX(), this.getY(), (float) this.xTexStart, (float) this.yTexStart, this.width, this.height, this.textureWidth, this.textureHeight);
 		if (clicked) {
 			Matrix3x2fStack poseStack = guiGraphics.pose();

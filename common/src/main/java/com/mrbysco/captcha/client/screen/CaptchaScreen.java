@@ -1,7 +1,9 @@
 package com.mrbysco.captcha.client.screen;
 
 import com.mrbysco.captcha.platform.Services;
+import net.minecraft.client.gui.ActiveTextCollector;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -33,7 +35,7 @@ public class CaptchaScreen extends Screen {
 	}
 
 	public void renderMessage(GuiGraphics guiGraphics) {
-		this.message.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, messageY, 10, false, ARGB.opaque(0));
+		this.message.visitLines(TextAlignment.CENTER, this.width / 2, messageY, 10, guiGraphics.textRenderer());
 	}
 
 	@Override

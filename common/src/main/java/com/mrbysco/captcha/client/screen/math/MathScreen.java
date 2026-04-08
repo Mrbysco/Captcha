@@ -4,10 +4,10 @@ import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.widget.NumberEditBox;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.ARGB;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.Random;
@@ -129,6 +129,6 @@ public class MathScreen extends CaptchaScreen {
 		if (this.answerBox != null)
 			this.answerBox.render(guiGraphics, mouseX, mouseY, partialTicks);
 
-		this.note.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, 120, 10, false, ARGB.opaque(0));
+		this.note.visitLines(TextAlignment.CENTER, this.width / 2, 120, 10, guiGraphics.textRenderer());
 	}
 }

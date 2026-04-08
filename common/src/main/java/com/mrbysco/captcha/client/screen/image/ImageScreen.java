@@ -1,15 +1,15 @@
 package com.mrbysco.captcha.client.screen.image;
 
+import com.mrbysco.captcha.Constants;
 import com.mrbysco.captcha.client.screen.CaptchaScreen;
 import com.mrbysco.captcha.client.screen.widget.ToggleButton;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.TextAlignment;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ARGB;
+import net.minecraft.resources.Identifier;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class ImageScreen extends CaptchaScreen {
 	private static final Random random = new Random();
-	private ResourceLocation IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/warp.png");
+	private Identifier IMAGE = Constants.modLoc("textures/gui/warp.png");
 	private int SQUARE_SIZE = 64; // The size of each square button
 	private boolean[][] correctSquares = new boolean[4][4];
 	private int tries = 0;
@@ -75,14 +75,14 @@ public class ImageScreen extends CaptchaScreen {
 	}
 
 	@Override
-	public void resize(Minecraft minecraft, int width, int height) {
-		super.resize(minecraft, width, height);
+	public void resize(int width, int height) {
+		super.resize(width, height);
 		updateImageSize();
 	}
 
 	private void changeImage(boolean reset) {
 		ImageEnum image = ImageEnum.getRandom(random);
-		IMAGE = ResourceLocation.fromNamespaceAndPath("captcha", "textures/gui/" + image.getImageName() + ".png");
+		IMAGE = Constants.modLoc("textures/gui/" + image.getImageName() + ".png");
 		List<Map.Entry<String, boolean[][]>> entries = image.getDataMap().entrySet().stream().toList();
 		Map.Entry<String, boolean[][]> entry = entries.get(random.nextInt(entries.size()));
 		String object = entry.getKey();
@@ -172,6 +172,6 @@ public class ImageScreen extends CaptchaScreen {
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.error.render(guiGraphics, MultiLineLabel.Align.CENTER, this.width / 2, this.errorY, 10, false, ARGB.opaque(0));
+		this.error.visitLines(TextAlignment.CENTER, this.width / 2, this.errorY, 10, guiGraphics.textRenderer());
 	}
 }

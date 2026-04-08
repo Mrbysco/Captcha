@@ -22,7 +22,7 @@ import java.util.UUID;
 public class CaptchaCommands {
 	public static void initializeCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
 		final LiteralArgumentBuilder<CommandSourceStack> root = Commands.literal(Constants.MOD_ID);
-		root.requires((sourceStack) -> sourceStack.hasPermission(2))
+		root.requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
 				.then(Commands.literal("forceCaptcha")
 						.then(Commands.argument("player", EntityArgument.players())
 								.then(Commands.argument("captchaName", StringArgumentType.word()).suggests((cs, builder) -> {
