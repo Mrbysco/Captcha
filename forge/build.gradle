@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id "net.neoforged.moddev" version "2.0.140"
+    id "net.neoforged.moddev" version "2.0.143"
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
 }
@@ -15,13 +15,8 @@ base {
 neoForge {
     version = "${neo_version}"
 
-//    parchment {
-//        minecraftVersion = "${parchment_minecraft_version}"
-//        mappingsVersion = "${parchment_mapping_version}"
-//    }
-
     // Automatically enable neoforge AccessTransformers if the file exists
-    def at = project(":forge").file('src/main/resources/META-INF/accesstransformer.cfg')
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }

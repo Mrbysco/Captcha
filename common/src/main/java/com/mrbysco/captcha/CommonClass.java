@@ -17,7 +17,6 @@ public class CommonClass {
 	}
 
 	public static void onPlayerTick(Player player) {
-		/*event.phase == Phase.END && event.side.isServer() && */
 		if (player != null && !player.isCreative() && !player.isSpectator()) {
 			Level level = player.level();
 			if (!player.isSpectator() && level.getGameTime() >= CaptchaConfig.COMMON.gracePeriod.get() &&
