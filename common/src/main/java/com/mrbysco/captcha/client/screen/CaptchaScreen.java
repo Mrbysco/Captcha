@@ -46,7 +46,7 @@ public class CaptchaScreen extends Screen {
 	}
 
 	public void completeCaptcha() {
-		this.minecraft.setScreen(null);
+		this.minecraft.gui.setScreen(null);
 		Services.PLATFORM.sendCompletedCaptchaMessage(code);
 	}
 

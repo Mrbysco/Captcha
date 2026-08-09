@@ -16,6 +16,6 @@ Ever thought it'd be a great idea to require a Captcha to open an inventory? Wel
 [[dependencies.captcha]]
 modId="minecraft"
 type="required"
-versionRange="[26.1.1,)"
+versionRange="[26.2,)"
 ordering="NONE"
 side="BOTH"
